@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -7,15 +11,10 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 25vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,5 +33,23 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* For Small Screens */
+.gameboard {
+  margin: 15vh auto;
+  height: 85vw;
+  width: 85vw;
+  background-color: blue;
+}
+
+/* For Large Screens */
+@media only screen and (min-width: 600px){
+  .gameboard {
+    margin: 10vh auto;
+    height: 90vh;
+    width: 90vh;
+    background-color: lightblue;
   }
 }
