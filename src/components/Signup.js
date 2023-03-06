@@ -1,6 +1,9 @@
 import {useState} from "react";
 
 function Signup() {
+    //import encryption library
+    const bcrypt = require("bcryptjs")
+
     //controlled form data
     const [formData, setFormData] = useState({
         username: "",
@@ -12,28 +15,38 @@ function Signup() {
             livesRemaining: ""
         }
     })
-
-    //form functions
     function handleChange(e) {
         setFormData({...formData, [e.target.name]: e.target.value})
     }
+
+    //Submit Form
     function handleSubmit(e) {
         e.preventDefault()
-        fetch('http://localhost:3000/users', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
+    
+        //encrypt password
+        bcrypt.hash(formData.hashPass, 5)
+        .then(hash => {
+
+            fetch('http://localhost:3000/users', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({...formData,
+                    hashPass: hash
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                //HERE GOES ALL LOGIC THAT MAY UPDATE THE DOM OR PERHAPS
+                //PASS TO THE "/" ROUTE
+            })
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            //HERE GOES ALL LOGIC THAT MAY UPDATE THE DOM OR PERHAPS
-            //PASS TO THE "/" ROUTE
+        .catch(err => {
+            console.log(err)
         })
     }
-    
 
     return(
         <form onSubmit={handleSubmit}>
