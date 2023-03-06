@@ -1,8 +1,10 @@
 import {useState} from "react";
+import { useNavigate } from "react-router-dom"
 
-function Signup({isLoggedIn, setIsLoggedIn, userData, setUserData}) {
+function Signup({setIsLoggedIn, userData, setUserData}) {
     //import encryption library
     const bcrypt = require("bcryptjs")
+    const navigate = useNavigate()
 
     //controlled form data
     const [formData, setFormData] = useState({
@@ -60,7 +62,8 @@ function Signup({isLoggedIn, setIsLoggedIn, userData, setUserData}) {
             .then(res => res.json())
             .then(data => {
                 setUserData([...userData, data])
-                setIsLoggedIn(!isLoggedIn)
+                setIsLoggedIn(true)
+                navigate('/game')
             })
         })
         .catch(err => {

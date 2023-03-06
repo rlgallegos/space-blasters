@@ -1,7 +1,9 @@
 import {useState} from "react";
+import { useNavigate } from "react-router-dom"
 
 function Login({userData, isLoggedIn, setIsLoggedIn}) {
-    const bcrypt = require("bcryptjs")
+    const bcrypt = require("bcryptjs");
+    const navigate = useNavigate();
 
     //controlled form states
     const [username, setUsername] = useState('')
@@ -30,6 +32,7 @@ function Login({userData, isLoggedIn, setIsLoggedIn}) {
         .then(response => {
             if (response) {
                 setIsLoggedIn(true)
+                navigate('/game')
             } else {
                 alert("Password Did Not Match")
                 setUsername('')

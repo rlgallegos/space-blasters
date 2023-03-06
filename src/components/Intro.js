@@ -2,6 +2,11 @@ import Signup from "./Signup"
 import Login from "./Login"
 
 function Intro({setUserData, userData, isLoggedIn, setIsLoggedIn}) {
+     
+    if (isLoggedIn) {
+        //go to "/user/:id"
+    }
+
     return (
         <>
             <header className="App-header">
@@ -9,7 +14,7 @@ function Intro({setUserData, userData, isLoggedIn, setIsLoggedIn}) {
             </header>
             <div>
                 <Login userData={userData} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-                <Signup isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} userData={userData} />
+                <Signup setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} userData={userData} />
             </div>
         </>
     )
