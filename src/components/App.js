@@ -1,5 +1,6 @@
 import '../App.css';
 import Board from './Board';
+import Signup from './Signup';
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
         Good Luck
       </header>
       <main>
-        
+        <Signup />
         <Board />
       </main>
     </div>
