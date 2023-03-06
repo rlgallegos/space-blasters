@@ -38,6 +38,8 @@ function Login({isLoggedIn, setIsLoggedIn}) {
         })
     }
 
+    console.log(isLoggedIn)
+
     //fetch username
     function findUsername(username) {
         const dbUser = fetch('http://localhost:3000/users')
