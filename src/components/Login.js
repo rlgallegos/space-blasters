@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function Login({isLoggedIn, setIsLoggedIn}) {
+function Login({userData, isLoggedIn, setIsLoggedIn}) {
     const bcrypt = require("bcryptjs")
 
     //controlled form states
@@ -14,11 +14,11 @@ function Login({isLoggedIn, setIsLoggedIn}) {
         }
     }
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault()
 
         //validate username and get userinfo
-        const dbUser = await findUsername(username)
+        const dbUser = userData.find(user => user.username === username)
         if (!dbUser) {
             alert("Username Not Found")
             setUsername('')
@@ -39,18 +39,6 @@ function Login({isLoggedIn, setIsLoggedIn}) {
     }
 
     console.log(isLoggedIn)
-
-    //fetch username
-    function findUsername(username) {
-        const dbUser = fetch('http://localhost:3000/users')
-        .then(res => res.json())
-        .then(data => {
-            const dbUser = data.find(user => user.username === username)
-            return dbUser
-        })
-        return dbUser
-    }
-
     return (
         <form onSubmit={handleSubmit}>
             <input name="username" onChange={handleChange} value={username} type="text" placeholder="Enter Username"></input>

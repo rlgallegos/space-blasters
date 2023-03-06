@@ -53,3 +53,9 @@
     background-color: lightblue;
   }
 }
+
+#page-not-found {
+  width: 45vh;
+  height: 45vh;
+  margin: 20vh 0 auto;
+}
