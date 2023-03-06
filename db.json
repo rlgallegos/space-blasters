@@ -1,0 +1,59 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "user1",
+      "email": "user1@gmail.com",
+      "hashPass": "1h2dnlsidfnlsdinflsdkfnln",
+      "state": {
+        "score": "",
+        "level": "",
+        "livesRemaining": ""
+      }
+    },
+    {
+      "id": 2,
+      "username": "user2",
+      "email": "user2@gmail.com",
+      "hashPass": "1h2dnlsidfnlsdinflsdkfnlo",
+      "state": {
+        "score": "",
+        "level": "",
+        "livesRemaining": ""
+      }
+    },
+    {
+      "id": 3,
+      "username": "Sometimes",
+      "email": "user3@gmail.com",
+      "hashPass": "1h2dnlsidfnlsdinflsdkfnlp",
+      "state": {
+        "score": "",
+        "level": "",
+        "livesRemaining": ""
+      }
+    },
+    {
+      "id": 5,
+      "username": "Yichang",
+      "email": "user4@gmail.com",
+      "hashPass": "1h2dnlsidfnlsdinflsdkfnlq",
+      "state": {
+        "score": "",
+        "level": "",
+        "livesRemaining": ""
+      }
+    },
+    {
+      "username": "newUser1",
+      "email": "newEmail1",
+      "hashPass": "Pass1",
+      "state": {
+        "score": "",
+        "level": "",
+        "livesRemaining": ""
+      },
+      "id": 6
+    }
+  ]
+}
