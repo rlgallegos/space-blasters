@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function Signup() {
+function Signup({isLoggedIn, setIsLoggedIn, userData, setUserData}) {
     //import encryption library
     const bcrypt = require("bcryptjs")
 
@@ -19,14 +19,35 @@ function Signup() {
         setFormData({...formData, [e.target.name]: e.target.value})
     }
 
+    function validateEmail(mail) {
+        if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+            return (true)
+        }
+        return (false)
+    }
+
     //Submit Form
     function handleSubmit(e) {
         e.preventDefault()
+
+         if (!validateEmail(formData.email) ) {
+            alert('Invalid Email Address')
+            return
+         }
+
+        //validation logic
+        if (!formData.username || !formData.email || !formData.hashPass) {
+            alert('Please Complete Form')
+            return
+        }
+        if (userData.find(userObj => userObj.username === formData.username)) {
+            alert('Username Already taken')
+            return
+        }
     
         //encrypt password
         bcrypt.hash(formData.hashPass, 5)
         .then(hash => {
-
             fetch('http://localhost:3000/users', {
                 method: "POST",
                 headers: {
@@ -38,9 +59,8 @@ function Signup() {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-                //HERE GOES ALL LOGIC THAT MAY UPDATE THE DOM OR PERHAPS
-                //PASS TO THE "/" ROUTE
+                setUserData([...userData, data])
+                setIsLoggedIn(!isLoggedIn)
             })
         })
         .catch(err => {
