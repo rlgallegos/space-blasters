@@ -43,6 +43,7 @@
   height: 85vw;
   width: 85vw;
   background-color: blue;
+  z-index: -1;
 }
 
 /* For Large Screens */
@@ -52,6 +53,7 @@
     height: 80vh;
     width: 80vh;
     background-color: lightblue;
+    z-index: -1;
   }
 }
 
