@@ -4,6 +4,12 @@ import React from "react";
 function Board() {
     const gameboard = document.getElementsByClassName('gameboard')[0]  
 
+    const level = 1
+    let randomNumbers = []
+    for (let i = 0; i < (level * 5); i++) {
+        randomNumbers.push(Math.floor(Math.random()))
+    }
+
     const [xAxis, setxAxis] = useState(50)
 
     function createBullet() {
@@ -13,8 +19,8 @@ function Board() {
               
         gameboard.appendChild(newDiv)
         newDiv.style.backgroundColor = 'black'
-        newDiv.style.height = '15px'
-        newDiv.style.width = '15px'
+        newDiv.style.height = '10px'
+        newDiv.style.width = '10px'
 
         //set location
         newDiv.style.position = 'absolute'
