@@ -1,55 +1,78 @@
-import {useState} from "react";
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Login({userData, isLoggedIn, setIsLoggedIn}) {
-    const bcrypt = require("bcryptjs");
-    const navigate = useNavigate();
+function Login({ userData, isLoggedIn, setIsLoggedIn }) {
+  const bcrypt = require("bcryptjs");
+  const navigate = useNavigate();
 
-    //controlled form states
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    function handleChange(e) {
-        if (e.target.name === 'username') {
-            setUsername(e.target.value)
-        } else {
-            setPassword(e.target.value)
-        }
+  //controlled form states
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  function handleChange(e) {
+    if (e.target.name === "username") {
+      setUsername(e.target.value);
+    } else {
+      setPassword(e.target.value);
+    }
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    //validate username and get userinfo
+    const dbUser = userData.find((user) => user.username === username);
+    if (!dbUser) {
+      alert("Username Not Found");
+      setUsername("");
+      setPassword("");
     }
 
     function handleSubmit(e) {
-        e.preventDefault()
+      e.preventDefault();
 
-        //validate username and get userinfo
-        const dbUser = userData.find(user => user.username === username)
-        if (!dbUser) {
-            alert("Username Not Found")
-            setUsername('')
-            setPassword('')
+      //validate username and get userinfo
+      const dbUser = userData.find((user) => user.username === username);
+      if (!dbUser) {
+        alert("Username Not Found");
+        setUsername("");
+        setPassword("");
+      }
+
+      //validate password and set Login State
+      bcrypt.compare(password, dbUser.hashPass).then((response) => {
+        if (response) {
+          setIsLoggedIn(true);
+          navigate("/game");
+        } else {
+          alert("Password Did Not Match");
+          setUsername("");
+          setPassword("");
         }
-
-        //validate password and set Login State
-        bcrypt.compare(password, dbUser.hashPass)
-        .then(response => {
-            if (response) {
-                setIsLoggedIn(true)
-                navigate('/game')
-            } else {
-                alert("Password Did Not Match")
-                setUsername('')
-                setPassword('')
-            }
-        })
+      });
     }
 
-    console.log(isLoggedIn)
+    console.log(isLoggedIn);
     return (
-        <form onSubmit={handleSubmit}>
-            <input name="username" onChange={handleChange} value={username} type="text" placeholder="Enter Username"></input>
-            <input name="password" onChange={handleChange} value={password} type="password" placeholder="Enter Password"></input>
-            <input type="submit" value="Login" ></input>
-            <br></br>
-        </form> 
-    )
+      <form onSubmit={handleSubmit}>
+        <input
+          name="username"
+          onChange={handleChange}
+          value={username}
+          type="text"
+          placeholder="Enter Username"
+        ></input>
+        <input
+          name="password"
+          onChange={handleChange}
+          value={password}
+          type="password"
+          placeholder="Enter Password"
+        ></input>
+        <input type="submit" value="Login"></input>
+        <br></br>
+      </form>
+    );
+  }
 }
 
-export default Login
+export default Login;
