@@ -20,7 +20,7 @@ function Login({ userData, isLoggedIn, setIsLoggedIn }) {
     e.preventDefault();
 
     //validate username and get userinfo
-    const dbUser = await findUsername(username);
+    const dbUser = userData.find((user) => user.username === username);
     if (!dbUser) {
       alert("Username Not Found");
       setUsername("");

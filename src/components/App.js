@@ -4,6 +4,7 @@ import Board from "./Board";
 import Intro from "./Intro";
 import PageNotFound from "./PageNotFound";
 import { useState, useEffect } from "react";
+import IDMenu from "./IDMenu";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,7 +33,7 @@ function App() {
               />
             }
           />
-          <Route path="/user/:id" />
+          <Route path="/user/:id" element={<IDMenu />} />
           {/* Finn's Id Page Component goes as the element in the route above */}
           <Route path="/game" element={<Board />} />
           {/* Nick's highetst game component will replace element "Board" above */}
