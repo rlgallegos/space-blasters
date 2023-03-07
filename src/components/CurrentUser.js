@@ -5,8 +5,8 @@ function CurrentUser({ userData }) {
   console.log(state);
   //   const score = state.score;
   return (
-    <div>
-      <h2>Current User: {username}</h2>
+    <div className="CurrentUserData">
+      <h2 className="CurrentUserTitle">Current User: {username}</h2>
       <table className="CurrentLoginMenu">
         <thead>
           <tr>{userData ? <td>Score:{state["score"]}</td> : <td>error</td>}</tr>

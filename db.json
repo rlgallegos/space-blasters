@@ -17,7 +17,7 @@
       "email": "user2@gmail.com",
       "hashPass": "1h2dnlsidfnlsdinflsdkfnlo",
       "state": {
-        "score": "",
+        "score": "3",
         "level": "",
         "livesRemaining": ""
       }
@@ -28,7 +28,7 @@
       "email": "user3@gmail.com",
       "hashPass": "1h2dnlsidfnlsdinflsdkfnlp",
       "state": {
-        "score": "",
+        "score": "4",
         "level": "",
         "livesRemaining": ""
       }
@@ -39,50 +39,50 @@
       "email": "user4@gmail.com",
       "hashPass": "1h2dnlsidfnlsdinflsdkfnlq",
       "state": {
-        "score": "",
+        "score": "5",
         "level": "",
         "livesRemaining": ""
       }
     },
     {
-      "username": "newUser1",
+      "username": "yomotha",
       "email": "newEmail1",
       "hashPass": "Pass1",
       "state": {
-        "score": "",
+        "score": "6",
         "level": "",
         "livesRemaining": ""
       },
       "id": 6
     },
     {
-      "username": "newUser2",
+      "username": "jonny",
       "email": "newEmail2",
       "hashPass": "EasyPassword",
       "state": {
-        "score": "",
+        "score": "7",
         "level": "",
         "livesRemaining": ""
       },
       "id": 7
     },
     {
-      "username": "newUser1",
+      "username": "reggie",
       "email": "newEmail1",
       "hashPass": "Easy Password",
       "state": {
-        "score": "",
+        "score": "8",
         "level": "",
         "livesRemaining": ""
       },
       "id": 8
     },
     {
-      "username": "newUser1",
+      "username": "?",
       "email": "newEmail1",
       "hashPass": "Easy",
       "state": {
-        "score": "",
+        "score": "9",
         "level": "",
         "livesRemaining": ""
       },
@@ -93,7 +93,7 @@
       "email": "newEmail1",
       "hashPass": "Easy",
       "state": {
-        "score": "",
+        "score": "10",
         "level": "",
         "livesRemaining": ""
       },
