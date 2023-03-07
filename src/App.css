@@ -4,6 +4,7 @@
 
 .App {
   text-align: center;
+  font-family: Determination;
 }
 
 .App-logo {
@@ -45,7 +46,7 @@
 }
 
 /* For Large Screens */
-@media only screen and (min-width: 600px){
+@media only screen and (min-width: 600px) {
   .gameboard {
     margin: 10vh auto;
     height: 80vh;
@@ -54,8 +55,29 @@
   }
 }
 
-#page-not-found {
-  width: 45vh;
-  height: 45vh;
-  margin: 20vh 0 auto;
+.ContinueMenu {
+  margin: auto;
+  border-spacing: 10px;
+}
+
+.CurrentLoginMenu {
+  margin: auto;
+  align-items: center;
+}
+
+.LeaderBoardTable {
+  float: right;
+}
+
+@font-face {
+  font-family: Determination;
+  src: url("../public/Determination.ttf");
+}
+
+.ContinueMenuButton {
+  font-family: Determination;
+}
+
+input {
+  font-family: Determination;
 }
