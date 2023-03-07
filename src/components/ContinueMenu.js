@@ -1,29 +1,49 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function ContinueMenu() {
+  const navigate = useNavigate();
   return (
-    <table className="ContinueMenu">
-      <thead>
-        <tr>
-          <td>
-            <button className="ContinueMenuButton">Continue</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button className="ContinueMenuButton">Restart</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button className="ContinueMenuButton">Delete</button>
-          </td>
-        </tr>
-      </thead>
-    </table>
+    <div>
+      <table className="ContinueMenu">
+        <thead>
+          <tr>
+            <td>
+              <button onClick={() => navigate("/game")} className="MenuButton">
+                Continue
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button onClick={handleRestartClick} className="MenuButton">
+                Restart
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button onClick={handleDeleteClick} className="MenuButton">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
   );
 }
 
-// function handleContinueClick() {}
+// function handleContinueClick() {
+//   console.log("Continue");
+// }
+
+function handleRestartClick() {
+  console.log("Restart");
+}
+
+function handleDeleteClick() {
+  console.log("Delete");
+}
 
 export default ContinueMenu;

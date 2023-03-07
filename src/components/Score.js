@@ -1,17 +1,12 @@
 import React from "react";
 
-function Score({ userData }) {
+function Score({ score, user }) {
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <td>User</td>
-            <td>Score</td>
-          </tr>
-        </thead>
-      </table>
-    </div>
+    <tr>
+      <td>
+        {user} - {score} pts
+      </td>
+    </tr>
   );
 }
 

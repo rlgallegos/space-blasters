@@ -1,12 +1,11 @@
-
+import { useNavigate } from "react-router-dom";
 
 function Board() {
-
-    return (
-        <div className="gameboard">
-
-        </div>
-    )
-
+  const navigate = useNavigate();
+  return (
+    <div className="gameboard">
+      <button onClick={() => navigate(-1)}>Go Back</button>
+    </div>
+  );
 }
 export default Board;

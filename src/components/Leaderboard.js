@@ -7,17 +7,17 @@ function LeaderBoard({ userData }) {
       <table className="LeaderBoardTable">
         <thead>
           <tr>
-            <td>Leaderboard:</td>
+            <td className="LeaderBoardTitle">LEADERBOARD:</td>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              {/* {userData?.map((user) => (
-                <Score userData={userData} score={user.state["score"]} />
-              ))} */}
-            </td>
-          </tr>
+          {userData.map((user) => (
+            <Score
+              key={user.id}
+              score={user.state["score"]}
+              user={user.username}
+            />
+          ))}
         </tbody>
       </table>
     </div>
