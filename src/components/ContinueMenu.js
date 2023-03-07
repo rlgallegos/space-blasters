@@ -24,6 +24,6 @@ function ContinueMenu() {
   );
 }
 
-function handleContinueClick() {}
+// function handleContinueClick() {}
 
 export default ContinueMenu;

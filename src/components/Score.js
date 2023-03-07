@@ -6,6 +6,7 @@ function Score({ userData }) {
       <table>
         <thead>
           <tr>
+            <td>User</td>
             <td>Score</td>
           </tr>
         </thead>
