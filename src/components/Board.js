@@ -1,23 +1,28 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import Alien from "./Alien";
+import Score from "./Score";
+import { useNavigate } from "react-router-dom";
 
-function Board() {
-  const [alienArray, setAlienArray] = useState([])
+function Board({ isLoggedIn, currentUser }) {
+  const [alienArray, setAlienArray] = useState([]);
   const [xAxis, setxAxis] = useState(115);
-  const [alienRects, setAlienRects] = useState([])
-
+  const [alienRects, setAlienRects] = useState([]);
+  const [score, setScore] = useState(0);
 
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const level = 1;
+  const navigate = useNavigate();
   if (gameboard){
     const gameboardRect = gameboard.getBoundingClientRect()
     console.log(gameboardRect)
   }
-  
+
+  if (isLoggedIn === false) {
+    navigate("/");
+  }
 
   useEffect(() => {
-
     let alienY = [];
     for (let i = 0; i < level * 5; i++) {
       alienY.push(Math.floor(Math.random() * (30 - -30) ) + -30);
@@ -26,7 +31,7 @@ function Board() {
     for (let i = 0; i < level * 5; i++) {
       alienX.push(Math.floor(Math.random() * (0 - 60) ) + 60);
     }
-  
+
     let zip = (alienX, alienY) => {
       return alienX.map((number, i) => [number, alienY[i]])
     }
@@ -48,23 +53,20 @@ function Board() {
     //gather an array of Alien Divs
     //each has a class of aliens to gather
     //each has a unique ID to identify
-    let aliens = document.getElementsByClassName('aliens')
+    let aliens = document.getElementsByClassName("aliens");
 
-    if(aliens) {
-      let alienArray = Array.from(aliens)
-      let rectArray = []
-      alienArray.forEach(alien => {
-        rectArray.push(alien.getBoundingClientRect())
-      setAlienRects(rectArray)
-      })
+    if (aliens) {
+      let alienArray = Array.from(aliens);
+      let rectArray = [];
+      alienArray.forEach((alien) => {
+        rectArray.push(alien.getBoundingClientRect());
+        setAlienRects(rectArray);
+      });
     }
-
-
-  }, [alienArray])
+  }, [alienArray]);
 
   //CURRENTLY HOLDS ALL RECTANGLES FOR ALIENS CURRENTLY IN EXISTANCE
   // console.log(alienRects)
-
 
   function createBullet() {
     //element creation
@@ -84,14 +86,13 @@ function Board() {
     sendBullet(newDiv);
   }
 
-
   function sendBullet(newDiv) {
     let interval = setInterval(() => {
       newDiv.style.top = newDiv.offsetTop - 1 + "px";
 
-      const bulletRect = newDiv.getBoundingClientRect()
+      const bulletRect = newDiv.getBoundingClientRect();
 
-      const gameTop = gameboard.offsetTop
+      const gameTop = gameboard.offsetTop;
 
       //if reaches the top of the gameboard
       if (newDiv.offsetTop <= gameTop) {
@@ -110,24 +111,32 @@ function Board() {
           gameboard.removeChild(newDiv);
 
           //delete alien
-          const updatedArray = alienArray.filter(each => each.props.id !== alienArray[i].props.id)
-          setAlienArray(updatedArray)
+          const updatedArray = alienArray.filter(
+            (each) => each.props.id !== alienArray[i].props.id
+          );
+          setAlienArray(updatedArray);
+
+          //update score
+          setScore(score + 10);
         }
+
       }
     }, 0);
   }
 
   function handleKeyDown(e) {
-    let shipOffsetRight = (window.innerWidth - e.target.offsetLeft - e.target.offsetWidth)
-    let gameboardOffsetRight = (window.innerWidth - gameboard.offsetLeft - gameboard.offsetWidth)
+    let shipOffsetRight =
+      window.innerWidth - e.target.offsetLeft - e.target.offsetWidth;
+    let gameboardOffsetRight =
+      window.innerWidth - gameboard.offsetLeft - gameboard.offsetWidth;
     switch (e.key) {
       case "a":
-        if (e.target.offsetLeft >= (gameboard.offsetLeft + 12)) {
+        if (e.target.offsetLeft >= gameboard.offsetLeft + 12) {
           setxAxis(xAxis - 2);
         }
         break;
       case "d":
-        if (shipOffsetRight >= (gameboardOffsetRight + 5)) {
+        if (shipOffsetRight >= gameboardOffsetRight + 5) {
           setxAxis(xAxis + 2);
         }
         break;
@@ -154,7 +163,9 @@ function Board() {
           height: "50px",
           width: "50px",
         }}
-      >
+      ></div>
+      <div className="BoardTitle">
+        <p>Current User - {currentUser.username}</p>
         <img id="player-image" src='/player.png'/>
       </div>
       <div className="gameboard">

@@ -1,7 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function ContinueMenu() {
+function ContinueMenu({ currentUser, setCurrentUser, setUserData, userData }) {
+  const params = useParams();
+  // console.log(currentUser["id"]);
+  //console.log(setCurrentUser);
+
   const navigate = useNavigate();
   return (
     <div>
@@ -17,14 +21,14 @@ function ContinueMenu() {
           <tr>
             <td>
               <button onClick={handleRestartClick} className="MenuButton">
-                Restart
+                Reset Settings
               </button>
             </td>
           </tr>
           <tr>
             <td>
               <button onClick={handleDeleteClick} className="MenuButton">
-                Delete
+                Delete User
               </button>
             </td>
           </tr>
@@ -32,18 +36,39 @@ function ContinueMenu() {
       </table>
     </div>
   );
+
+  function handleRestartClick() {
+    const restartedUser = {
+      state: {
+        score: 0,
+        livesRemaining: 3,
+        level: 0,
+      },
+    };
+
+    fetch(`http://localhost:3000/users/${params["id"]}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(restartedUser),
+    })
+      .then((res) => res.json())
+      .then((restartedUser) => setCurrentUser(restartedUser));
+  }
+
+  function handleDeleteClick() {
+    fetch(`http://localhost:3000/users/${params["id"]}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        // const newArray = userData.filter((user) => currentUser.id !== user.id);
+        navigate("/");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error deleting user:", error);
+      });
+  }
 }
-
-// function handleContinueClick() {
-//   console.log("Continue");
-// }
-
-function handleRestartClick() {
-  console.log("Restart");
-}
-
-function handleDeleteClick() {
-  console.log("Delete");
-}
-
 export default ContinueMenu;

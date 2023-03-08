@@ -1,7 +1,7 @@
 import Signup from "./Signup"
 import Login from "./Login"
 
-function Intro({setUserData, userData, isLoggedIn, setIsLoggedIn}) {
+function Intro({setUserData, userData, isLoggedIn, setIsLoggedIn, setCurrentUser}) {
      
     if (isLoggedIn) {
         //go to "/user/:id"
@@ -13,7 +13,7 @@ function Intro({setUserData, userData, isLoggedIn, setIsLoggedIn}) {
             Good Luck
             </header>
             <div>
-                <Login userData={userData} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+                <Login setCurrentUser={setCurrentUser} userData={userData} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
                 <Signup setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} userData={userData} />
             </div>
         </>

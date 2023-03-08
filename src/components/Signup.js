@@ -6,6 +6,12 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
   const bcrypt = require("bcryptjs");
   const navigate = useNavigate();
 
+  const defaultFormData = {
+    username: "",
+    email: "",
+    hashPass: "",
+  };
+
   //controlled form data
   const [formData, setFormData] = useState({
     username: "",
@@ -62,7 +68,9 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
           .then((data) => {
             setUserData([...userData, data]);
             setIsLoggedIn(true);
-            navigate("/game");
+            setFormData(defaultFormData);
+            navigate("/");
+            alert("Account Created! Please Login");
           });
       })
       .then((res) => res.json())
