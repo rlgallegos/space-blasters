@@ -44,13 +44,14 @@ function Login({ userData, isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     bcrypt.compare(password, dbUser.hashPass).then((response) => {
       if (response) {
         setIsLoggedIn(true);
-        navigate("/user/:id");
+        navigate(`/user/${dbUser["id"]}`);
       } else {
         alert("Password Did Not Match");
         setUsername("");
         setPassword("");
       }
-    }); setCurrentUser(dbUser);
+    });
+    setCurrentUser(dbUser);
   }
 
   return (

@@ -4,9 +4,7 @@ import ContinueMenu from "./ContinueMenu";
 import CurrentUser from "./CurrentUser";
 import LeaderBoard from "./Leaderboard";
 
-
-
-function IDMenu({ isLoggedIn, currentUser }) {
+function IDMenu({ isLoggedIn, currentUser, setCurrentUser }) {
   const [userData, setUserData] = useState([]);
   const navigate = useNavigate();
 
@@ -23,8 +21,16 @@ function IDMenu({ isLoggedIn, currentUser }) {
   return (
     <div>
       <LeaderBoard key={userData.id} userData={userData} />
+
+      {isLoggedIn ? (
         <CurrentUser userData={userData} currentUser={currentUser} />
-      <ContinueMenu />
+      ) : null}
+      <ContinueMenu
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        setUserData={setUserData}
+        userData={userData}
+      />
     </div>
   );
 }

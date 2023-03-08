@@ -100,24 +100,13 @@
       "id": 10
     },
     {
-      "username": "Finn",
-      "email": "finn.chen.maenhaut@gmail.com",
-      "hashPass": "$2a$05$4XdiyAOiH8.PP1HNY3zfUuB9ENZhQ4XX4i4hkkyhtFeriWEUojlvS",
-      "state": {
-        "score": "",
-        "level": "",
-        "livesRemaining": ""
-      },
-      "id": 11
-    },
-    {
       "username": "NickB",
       "email": "nicholasrbrereton@gmail.com",
       "hashPass": "$2a$05$5CVRJl0/Aj3WD5YIgld4ke6fq7e6rBwMhbMePKIMRVW5PNq3kmneq",
       "state": {
-        "score": "",
-        "level": "",
-        "livesRemaining": ""
+        "score": 0,
+        "livesRemaining": 3,
+        "level": 0
       },
       "id": 12
     }
