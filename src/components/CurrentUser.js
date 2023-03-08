@@ -1,6 +1,6 @@
 import React from "react";
 
-function CurrentUser({ userData }) {
+function CurrentUser({ userData, dbUser }) {
   const { username, email, state } = userData;
   console.log(state);
   //   const score = state.score;

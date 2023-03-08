@@ -2,63 +2,64 @@ import { useState, useEffect } from "react";
 import React from "react";
 import Alien from "./Alien";
 import Score from "./Score";
+import { useNavigate } from "react-router-dom";
 
-function Board() {
-  const [alienArray, setAlienArray] = useState([])
+function Board({ isLoggedIn }) {
+  const [alienArray, setAlienArray] = useState([]);
   const [xAxis, setxAxis] = useState(115);
-  const [alienRects, setAlienRects] = useState([])
-  const [score, setScore] = useState(0)
+  const [alienRects, setAlienRects] = useState([]);
+  const [score, setScore] = useState(0);
 
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const level = 1;
-  
+  const navigate = useNavigate();
+
+  if (isLoggedIn === false) {
+    navigate("/");
+  }
 
   useEffect(() => {
-
     let alienY = [];
     for (let i = 0; i < level * 5; i++) {
-      alienY.push(Math.floor(Math.random() * (0 - 75) ) + 75);
+      alienY.push(Math.floor(Math.random() * (0 - 75)) + 75);
     }
     let alienX = [];
     for (let i = 0; i < level * 5; i++) {
-      alienX.push(Math.floor(Math.random() * (0 - 50) ) + 50);
+      alienX.push(Math.floor(Math.random() * (0 - 50)) + 50);
     }
-  
+
     let zip = (alienX, alienY) => {
-      return alienX.map((number, i) => [number, alienY[i]])
-    }
-  
-    let coordinates = zip(alienX, alienY)
-  
+      return alienX.map((number, i) => [number, alienY[i]]);
+    };
+
+    let coordinates = zip(alienX, alienY);
+
     let uniqueId = -1;
-    const newArray = coordinates.map(each => {
-      uniqueId++
-      return <Alien id={uniqueId} key={uniqueId} coordinates={each} />
-    })
-    setAlienArray(newArray)
-  }, [])
+    const newArray = coordinates.map((each) => {
+      uniqueId++;
+      return <Alien id={uniqueId} key={uniqueId} coordinates={each} />;
+    });
+    setAlienArray(newArray);
+  }, []);
 
   useEffect(() => {
     //gather an array of Alien Divs
     //each has a class of aliens to gather
     //each has a unique ID to identify
-    let aliens = document.getElementsByClassName('aliens')
+    let aliens = document.getElementsByClassName("aliens");
 
-    if(aliens) {
-      let alienArray = Array.from(aliens)
-      let rectArray = []
-      alienArray.forEach(alien => {
-        rectArray.push(alien.getBoundingClientRect())
-      setAlienRects(rectArray)
-      })
+    if (aliens) {
+      let alienArray = Array.from(aliens);
+      let rectArray = [];
+      alienArray.forEach((alien) => {
+        rectArray.push(alien.getBoundingClientRect());
+        setAlienRects(rectArray);
+      });
     }
-
-
-  }, [alienArray])
+  }, [alienArray]);
 
   //CURRENTLY HOLDS ALL RECTANGLES FOR ALIENS CURRENTLY IN EXISTANCE
   // console.log(alienRects)
-
 
   function createBullet() {
     //element creation
@@ -78,14 +79,13 @@ function Board() {
     sendBullet(newDiv);
   }
 
-
   function sendBullet(newDiv) {
     let interval = setInterval(() => {
       newDiv.style.top = newDiv.offsetTop - 1 + "px";
 
-      const bulletRect = newDiv.getBoundingClientRect()
+      const bulletRect = newDiv.getBoundingClientRect();
 
-      const gameTop = gameboard.offsetTop
+      const gameTop = gameboard.offsetTop;
 
       //if reaches the top of the gameboard
       if (newDiv.offsetTop <= gameTop) {
@@ -95,8 +95,12 @@ function Board() {
 
       //if reaches an alien
       for (let i = 0; i < alienRects.length; i++) {
-        if ( (alienRects[i].bottom >= bulletRect.top) && (alienRects[i].left <= bulletRect.left) && (alienRects[i].right >= bulletRect.right) ) {
-          console.log('collision marked')
+        if (
+          alienRects[i].bottom >= bulletRect.top &&
+          alienRects[i].left <= bulletRect.left &&
+          alienRects[i].right >= bulletRect.right
+        ) {
+          console.log("collision marked");
           // console.log(i + 1)
 
           //delete bullet
@@ -104,27 +108,31 @@ function Board() {
           gameboard.removeChild(newDiv);
 
           //delete alien
-          const updatedArray = alienArray.filter(each => each.props.id !== alienArray[i].props.id)
-          setAlienArray(updatedArray)
+          const updatedArray = alienArray.filter(
+            (each) => each.props.id !== alienArray[i].props.id
+          );
+          setAlienArray(updatedArray);
 
           //update score
-          setScore(score + 10)
+          setScore(score + 10);
         }
       }
     }, 0);
   }
 
   function handleKeyDown(e) {
-    let shipOffsetRight = (window.innerWidth - e.target.offsetLeft - e.target.offsetWidth)
-    let gameboardOffsetRight = (window.innerWidth - gameboard.offsetLeft - gameboard.offsetWidth)
+    let shipOffsetRight =
+      window.innerWidth - e.target.offsetLeft - e.target.offsetWidth;
+    let gameboardOffsetRight =
+      window.innerWidth - gameboard.offsetLeft - gameboard.offsetWidth;
     switch (e.key) {
       case "a":
-        if (e.target.offsetLeft >= (gameboard.offsetLeft + 12)) {
+        if (e.target.offsetLeft >= gameboard.offsetLeft + 12) {
           setxAxis(xAxis - 2);
         }
         break;
       case "d":
-        if (shipOffsetRight >= (gameboardOffsetRight + 5)) {
+        if (shipOffsetRight >= gameboardOffsetRight + 5) {
           setxAxis(xAxis + 2);
         }
         break;
@@ -153,11 +161,8 @@ function Board() {
           backgroundColor: "white",
           border: "1px solid black",
         }}
-      >
-      </div>
-      <div className="gameboard">
-      {alienArray}
-      </div>
+      ></div>
+      <div className="gameboard">{alienArray}</div>
       <Score score={score} />
     </>
   );

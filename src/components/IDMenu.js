@@ -3,12 +3,16 @@ import { useNavigate } from "react-router-dom";
 import ContinueMenu from "./ContinueMenu";
 import CurrentUser from "./CurrentUser";
 import LeaderBoard from "./Leaderboard";
+import { useNavigate } from "react-router-dom";
 
-function IDMenu({ isLoggedIn }) {
+
+function IDMenu({ isLoggedIn, dbUser }) {
   const [userData, setUserData] = useState([]);
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  //   (isLoggedIn) ?
+  if (isLoggedIn === false) {
+    navigate("/");
+  }
 
   useEffect(() => {
     fetch("http://localhost:3000/users")
@@ -16,11 +20,14 @@ function IDMenu({ isLoggedIn }) {
       .then((data) => setUserData(data));
   }, []);
 
-  //   console.log(userData[0].id);
   return (
     <div>
       <LeaderBoard key={userData.id} userData={userData} />
-      {userData?.id ? <CurrentUser userData={userData} /> : <p>hi</p>}
+      {userData?.id ? (
+        <CurrentUser userData={userData} dbUser={dbUser} />
+      ) : (
+        <p>hi</p>
+      )}
       <ContinueMenu />
     </div>
   );
