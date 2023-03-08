@@ -62,7 +62,7 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
           .then((data) => {
             setUserData([...userData, data]);
             setIsLoggedIn(true);
-            navigate("/game");
+            navigate("/user/:id");
           });
       })
       .then((res) => res.json())
