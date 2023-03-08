@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ContinueMenu from "./ContinueMenu";
 import CurrentUser from "./CurrentUser";
 import LeaderBoard from "./Leaderboard";
 
-function IDMenu() {
+function IDMenu({ isLoggedIn }) {
   const [userData, setUserData] = useState([]);
+  //   const navigate = useNavigate();
+
+  //   (isLoggedIn) ?
 
   useEffect(() => {
     fetch("http://localhost:3000/users")
