@@ -10,17 +10,21 @@ function Board() {
 
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const level = 1;
+  if (gameboard){
+    const gameboardRect = gameboard.getBoundingClientRect()
+    console.log(gameboardRect)
+  }
   
 
   useEffect(() => {
 
     let alienY = [];
     for (let i = 0; i < level * 5; i++) {
-      alienY.push(Math.floor(Math.random() * (0 - 75) ) + 75);
+      alienY.push(Math.floor(Math.random() * (30 - -30) ) + -30);
     }
     let alienX = [];
     for (let i = 0; i < level * 5; i++) {
-      alienX.push(Math.floor(Math.random() * (0 - 50) ) + 50);
+      alienX.push(Math.floor(Math.random() * (0 - 60) ) + 60);
     }
   
     let zip = (alienX, alienY) => {
@@ -28,11 +32,14 @@ function Board() {
     }
   
     let coordinates = zip(alienX, alienY)
+
+    let alienImageArray = [
+      '/Alien A.png', '/Alien B.png', '/Alien C.png', '/Alien D.png', 'Alien E.png'];
   
     let uniqueId = -1;
     const newArray = coordinates.map(each => {
       uniqueId++
-      return <Alien id={uniqueId} key={uniqueId} coordinates={each} />
+      return <Alien id={uniqueId} key={uniqueId} coordinates={each} alienImageArray={alienImageArray} />
     })
     setAlienArray(newArray)
   }, [])
@@ -94,7 +101,7 @@ function Board() {
 
       //if reaches an alien
       for (let i = 0; i < alienRects.length; i++) {
-        if ( (alienRects[i].bottom >= bulletRect.top) && (alienRects[i].left <= bulletRect.left) && (alienRects[i].right >= bulletRect.right) ) {
+        if ( (alienRects[i].bottom >= bulletRect.top) && ((alienRects[i].left - 10 )<= bulletRect.left) && ((alienRects[i].right + 10) >= bulletRect.right) ) {
           console.log('collision marked')
           // console.log(i + 1)
 
@@ -144,16 +151,23 @@ function Board() {
           position: "absolute",
           top: "80vh",
           left: `${xAxis}vh`,
-          height: "25px",
-          width: "25px",
-          border: "1px solid black",
-          boxSizing: "border-box"
+          height: "50px",
+          width: "50px",
         }}
       >
-        <img id="player-image"/>
+        <img id="player-image" src='/player.png'/>
       </div>
       <div className="gameboard">
       {alienArray}
+      {/* <img src="/Planet A.png"
+      position="absolute"
+      width='150px' />
+      <img src="/Planet B.png"
+      position="absolute"
+      width='100px' />
+      <img src="/Planet C.png"
+      position="absolute"
+      width='200px' /> */}
       </div>
       
     </>
