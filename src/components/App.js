@@ -41,7 +41,7 @@ function App() {
             element={<IDMenu isLoggedIn={isLoggedIn} currentUser={currentUser} />}
           />
           {/* Finn's Id Page Component goes as the element in the route above */}
-          <Route path="/game" element={<Board isLoggedIn={isLoggedIn} />} />
+          <Route path="/game" element={<Board isLoggedIn={isLoggedIn} currentUser={currentUser} />} />
           {/* Nick's highetst game component will replace element "Board" above */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>

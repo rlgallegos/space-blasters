@@ -106,3 +106,9 @@ input {
 .LeaderBoardTitle {
   font-weight: bold;
 }
+
+.BoardTitle {
+  position: fixed;
+  font-size: larger;
+  left: 45%
+}
