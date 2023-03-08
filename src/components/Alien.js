@@ -5,6 +5,7 @@ function Alien({alienImageArray, id, coordinates}) {
 
 const alienBoard = document.getElementsByClassName("gameboard")[0]
 const boardRect = alienBoard.getBoundingClientRect()
+const ship = document.getElementsByClassName('ship')
 
   function createAllienBullet(){
     const alienDiv= document.createElement("div");
@@ -26,11 +27,18 @@ setInterval(createAllienBullet, 3000);
     let alienRect = alienDiv.getBoundingClientRect();
     alienDiv.style.top = alienDiv.offsetTop + 1 + "px";
 
-
-    if(alienRect.bottom > boardRect.bottom){
+    //if it reaches the bottom
+    if (alienRect.bottom > boardRect.bottom){
         clearInterval(alienInterval);
         alienBoard.removeChild(alienDiv);
     }  
+    
+    //if it hits the ship
+    const shipRect = ship.getBoundingClientRect()
+    if (alienRect.bottom >= shipRect.top && alienRect.left >= shipRect.left && alienRect.right <= shipRect.right) {
+        console.log('I was hit')
+    }
+
     }, 0 )
 }
 
