@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login({ userData, isLoggedIn, setIsLoggedIn }) {
+function Login({ userData, isLoggedIn, setIsLoggedIn, setCurrentUser }) {
   const bcrypt = require("bcryptjs");
   const navigate = useNavigate();
 
@@ -50,7 +50,7 @@ function Login({ userData, isLoggedIn, setIsLoggedIn }) {
         setUsername("");
         setPassword("");
       }
-    });
+    }); setCurrentUser(dbUser);
   }
 
   return (

@@ -1,19 +1,20 @@
 import React from "react";
 
-function CurrentUser({ userData, dbUser }) {
-  const { username, email, state } = userData;
+function CurrentUser({ currentUser }) {
+  const { username, email, state } = currentUser;
+  console.log(username, email, state);
   console.log(state);
   //   const score = state.score;
   return (
     <div className="CurrentUserData">
-      <h2 className="CurrentUserTitle">Current User: {username}</h2>
+      <h2 className="CurrentUserTitle">Current Player: {username}</h2>
       <table className="CurrentLoginMenu">
         <thead>
-          <tr>{userData ? <td>Score:{state["score"]}</td> : <td>error</td>}</tr>
+          <tr>{currentUser ? <td>Score:{state["score"]}</td> : <td>error</td>}</tr>
           <tr>
             <td>Email: {email}</td>
           </tr>
-          <tr>{userData ? <td>Current Level:{state["level"]}</td> : null}</tr>
+          <tr>{currentUser ? <td>Current Level:{state["level"]}</td> : null}</tr>
           <tr>
             <td>Lives Remaining: {state["livesRemaining"]}</td>
           </tr>
