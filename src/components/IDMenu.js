@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ContinueMenu from "./ContinueMenu";
 import CurrentUser from "./CurrentUser";
 import LeaderBoard from "./Leaderboard";
