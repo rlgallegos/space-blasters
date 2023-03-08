@@ -13,6 +13,10 @@ function Board({ isLoggedIn, currentUser }) {
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const level = 1;
   const navigate = useNavigate();
+  if (gameboard){
+    const gameboardRect = gameboard.getBoundingClientRect()
+    console.log(gameboardRect)
+  }
 
   if (isLoggedIn === false) {
     navigate("/");
@@ -21,26 +25,29 @@ function Board({ isLoggedIn, currentUser }) {
   useEffect(() => {
     let alienY = [];
     for (let i = 0; i < level * 5; i++) {
-      alienY.push(Math.floor(Math.random() * (0 - 75)) + 75);
+      alienY.push(Math.floor(Math.random() * (30 - -30) ) + -30);
     }
     let alienX = [];
     for (let i = 0; i < level * 5; i++) {
-      alienX.push(Math.floor(Math.random() * (0 - 50)) + 50);
+      alienX.push(Math.floor(Math.random() * (0 - 60) ) + 60);
     }
 
     let zip = (alienX, alienY) => {
-      return alienX.map((number, i) => [number, alienY[i]]);
-    };
+      return alienX.map((number, i) => [number, alienY[i]])
+    }
+  
+    let coordinates = zip(alienX, alienY)
 
-    let coordinates = zip(alienX, alienY);
-
+    let alienImageArray = [
+      '/Alien A.png', '/Alien B.png', '/Alien C.png', '/Alien D.png', 'Alien E.png'];
+  
     let uniqueId = -1;
-    const newArray = coordinates.map((each) => {
-      uniqueId++;
-      return <Alien id={uniqueId} key={uniqueId} coordinates={each} />;
-    });
-    setAlienArray(newArray);
-  }, []);
+    const newArray = coordinates.map(each => {
+      uniqueId++
+      return <Alien id={uniqueId} key={uniqueId} coordinates={each} alienImageArray={alienImageArray} />
+    })
+    setAlienArray(newArray)
+  }, [])
 
   useEffect(() => {
     //gather an array of Alien Divs
@@ -95,12 +102,8 @@ function Board({ isLoggedIn, currentUser }) {
 
       //if reaches an alien
       for (let i = 0; i < alienRects.length; i++) {
-        if (
-          alienRects[i].bottom >= bulletRect.top &&
-          alienRects[i].left <= bulletRect.left &&
-          alienRects[i].right >= bulletRect.right
-        ) {
-          console.log("collision marked");
+        if ( (alienRects[i].bottom >= bulletRect.top) && ((alienRects[i].left - 10 )<= bulletRect.left) && ((alienRects[i].right + 10) >= bulletRect.right) ) {
+          console.log('collision marked')
           // console.log(i + 1)
 
           //delete bullet
@@ -157,17 +160,27 @@ function Board({ isLoggedIn, currentUser }) {
           position: "absolute",
           top: "80vh",
           left: `${xAxis}vh`,
-          height: "25px",
-          width: "25px",
-          backgroundColor: "white",
-          border: "1px solid black",
+          height: "50px",
+          width: "50px",
         }}
       ></div>
       <div className="BoardTitle">
         <p>Current User - {currentUser.username}</p>
+        <img id="player-image" src='/player.png'/>
       </div>
-      <div className="gameboard">{alienArray}</div>
-      <Score score={score} />
+      <div className="gameboard">
+      {alienArray}
+      {/* <img src="/Planet A.png"
+      position="absolute"
+      width='150px' />
+      <img src="/Planet B.png"
+      position="absolute"
+      width='100px' />
+      <img src="/Planet C.png"
+      position="absolute"
+      width='200px' /> */}
+      </div>
+      
     </>
   );
 }

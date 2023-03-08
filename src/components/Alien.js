@@ -1,6 +1,6 @@
 import React from "react"
 
-function Alien({id, coordinates}) {
+function Alien({alienImageArray, id, coordinates}) {
     console.log(coordinates)
 
 const alienBoard = document.getElementsByClassName("gameboard")[0]
@@ -38,16 +38,17 @@ setInterval(createAllienBullet, 3000);
         <div
         style={{
             position: "absolute",
-            backgroundColor: 'black',
-            width: "25px",
-            height: "25px",
+            width: "50px",
+            height: "50px",
             top: `${coordinates[0]}vh`,
             left: `${coordinates[1]}vh`,
+            boxSizing: "border-box",
+            display: 'inline-block'
         }}
         className='aliens'
         id={id}
         >
-
+            <img src={alienImageArray[id]} className="alien-image" />
         </div>
     )
 }
