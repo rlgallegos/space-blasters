@@ -54,6 +54,10 @@
     width: 80vh;
     background-color: lightblue;
     z-index: -1;
+    border: 5px;
+    border-color: black;
+    border-style: solid;
+    display: inline-block;
   }
 }
 
@@ -96,7 +100,6 @@ input {
 }
 
 .CurrentUserTitle {
-  /* margin-top: 50%; */
   margin-left: 8%;
 }
 
