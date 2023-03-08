@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function Board({ isLoggedIn, currentUser }) {
   const [alienArray, setAlienArray] = useState([]);
-  const [xAxis, setxAxis] = useState(115);
+  const [xAxis, setxAxis] = useState(50);
   const [alienRects, setAlienRects] = useState([]);
   const [score, setScore] = useState(0);
 
@@ -18,18 +18,18 @@ function Board({ isLoggedIn, currentUser }) {
     console.log(gameboardRect)
   }
 
-  if (isLoggedIn === false) {
-    navigate("/");
-  }
+  // if (isLoggedIn === false) {
+  //   navigate("/");
+  // }
 
   useEffect(() => {
     let alienY = [];
     for (let i = 0; i < level * 5; i++) {
-      alienY.push(Math.floor(Math.random() * (30 - -30) ) + -30);
+      alienY.push(Math.floor(Math.random() * (80 - 20) ) + 10);
     }
     let alienX = [];
     for (let i = 0; i < level * 5; i++) {
-      alienX.push(Math.floor(Math.random() * (0 - 60) ) + 60);
+      alienX.push(Math.floor(Math.random() * (10 - 65) ) + 65);
     }
 
     let zip = (alienX, alienY) => {
@@ -80,7 +80,7 @@ function Board({ isLoggedIn, currentUser }) {
     //set location
     newDiv.style.position = "absolute";
     newDiv.style.top = `80vh`;
-    newDiv.style.left = `${xAxis}vh`;
+    newDiv.style.left = `${xAxis + 5.5}vw`;
 
     //begin movement
     sendBullet(newDiv);
@@ -159,14 +159,14 @@ function Board({ isLoggedIn, currentUser }) {
           boxSizing: "border-box",
           position: "absolute",
           top: "80vh",
-          left: `${xAxis}vh`,
-          height: "50px",
-          width: "50px",
+          left: `${xAxis}vw`,
+          height: "12vh",
+          width: "12vw",
         }}
-      ></div>
+      ><img id="player-image" src='/player.png'/></div>
       <div className="BoardTitle">
         <p>Current User - {currentUser.username}</p>
-        <img id="player-image" src='/player.png'/>
+        
       </div>
       <div className="gameboard">
       {alienArray}
