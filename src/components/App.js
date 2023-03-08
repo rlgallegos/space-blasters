@@ -9,6 +9,7 @@ import IDMenu from "./IDMenu";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     fetch("http://localhost:3000/users")
@@ -18,6 +19,7 @@ function App() {
       });
   }, []);
 
+
   return (
     <div className="App">
       <main>
@@ -26,6 +28,7 @@ function App() {
             path="/"
             element={
               <Intro
+              setCurrentUser={setCurrentUser}
                 userData={userData}
                 setUserData={setUserData}
                 isLoggedIn={isLoggedIn}
@@ -35,7 +38,7 @@ function App() {
           />
           <Route
             path="/user/:id"
-            element={<IDMenu isLoggedIn={isLoggedIn} />}
+            element={<IDMenu isLoggedIn={isLoggedIn} currentUser={currentUser} />}
           />
           {/* Finn's Id Page Component goes as the element in the route above */}
           <Route path="/game" element={<Board isLoggedIn={isLoggedIn} />} />

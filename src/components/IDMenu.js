@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import ContinueMenu from "./ContinueMenu";
 import CurrentUser from "./CurrentUser";
 import LeaderBoard from "./Leaderboard";
-import { useNavigate } from "react-router-dom";
 
 
-function IDMenu({ isLoggedIn, dbUser }) {
+
+function IDMenu({ isLoggedIn, currentUser }) {
   const [userData, setUserData] = useState([]);
   const navigate = useNavigate();
 
@@ -23,11 +23,7 @@ function IDMenu({ isLoggedIn, dbUser }) {
   return (
     <div>
       <LeaderBoard key={userData.id} userData={userData} />
-      {userData?.id ? (
-        <CurrentUser userData={userData} dbUser={dbUser} />
-      ) : (
-        <p>hi</p>
-      )}
+        <CurrentUser userData={userData} currentUser={currentUser} />
       <ContinueMenu />
     </div>
   );
