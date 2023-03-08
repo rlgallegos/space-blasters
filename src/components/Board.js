@@ -4,18 +4,22 @@ import Alien from "./Alien";
 
 function Board() {
   const [alienArray, setAlienArray] = useState([])
+  const [xAxis, setxAxis] = useState(115);
+
+
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const level = 1;
+  
 
   useEffect(() => {
 
     let alienY = [];
     for (let i = 0; i < level * 5; i++) {
-      alienY.push(Math.floor(Math.random() * (90 - 15) ) + 15);
+      alienY.push(Math.floor(Math.random() * (0 - 75) ) + 75);
     }
     let alienX = [];
     for (let i = 0; i < level * 5; i++) {
-      alienX.push(Math.floor(Math.random() * (90 - 15) ) + 15);
+      alienX.push(Math.floor(Math.random() * (0 - 50) ) + 50);
     }
   
     let zip = (alienX, alienY) => {
@@ -24,13 +28,15 @@ function Board() {
   
     let coordinates = zip(alienX, alienY)
   
+    let uniqueId = -1;
     const newArray = coordinates.map(each => {
-      return <Alien coordinates={each} />
+      uniqueId++
+      return <Alien key={uniqueId} coordinates={each} />
     })
     setAlienArray(newArray)
   }, [])
 
-  const [xAxis, setxAxis] = useState(100);
+
 
   function createBullet() {
     //element creation
@@ -65,16 +71,22 @@ function Board() {
     }, 0);
   }
 
+  //xAxis < 134
+  //(xAxis > 60)
+
   function handleKeyDown(e) {
-    console.log(e.target)
+    let shipOffsetRight = (window.innerWidth - e.target.offsetLeft - e.target.offsetWidth)
+    let gameboardOffsetRight = (window.innerWidth - gameboard.offsetLeft - gameboard.offsetWidth)
+
+    console.log(shipOffsetRight)
     switch (e.key) {
       case "a":
-        if (xAxis > 60) {
+        if (e.target.offsetLeft >= (gameboard.offsetLeft + 15)) {
           setxAxis(xAxis - 2);
         }
         break;
       case "d":
-        if (xAxis < 134) {
+        if (shipOffsetRight >= (gameboardOffsetRight + 18)) {
           setxAxis(xAxis + 2);
         }
         break;
@@ -94,15 +106,14 @@ function Board() {
         onKeyDown={handleKeyDown}
         tabIndex="0"
         style={{
-          position: "relative",
+          position: "absolute",
           top: "80vh",
           left: `${xAxis}vh`,
           height: "25px",
           width: "25px",
           backgroundColor: "white",
           border: "1px solid black",
-          userSelect: true
-
+          boxSizing: "border-box"
         }}
       >
       </div>
