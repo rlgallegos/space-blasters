@@ -5,6 +5,7 @@ import CurrentUser from "./CurrentUser";
 import LeaderBoard from "./Leaderboard";
 import { useNavigate } from "react-router-dom";
 
+
 function IDMenu({ isLoggedIn, dbUser }) {
   const [userData, setUserData] = useState([]);
   const navigate = useNavigate();
