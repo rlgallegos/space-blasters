@@ -13,8 +13,8 @@ const boardRect = alienBoard.getBoundingClientRect()
     alienDiv.style.width = "10px";
     alienDiv.style.height = "10px";
     alienDiv.style.position = "absolute";
-    alienDiv.style.left = `${coordinates[1]}vh`;
-    alienDiv.style.top = `${coordinates[0]}vh`;
+    alienDiv.style.left = `${coordinates[1] + 5.5}vw`;
+    alienDiv.style.top = `${coordinates[0] + 5.5}vh`;
     alienDiv.style.margin = '0px'
     sendAllienBullet(alienDiv);
 } 
@@ -38,10 +38,10 @@ setInterval(createAllienBullet, 3000);
         <div
         style={{
             position: "absolute",
-            width: "50px",
-            height: "50px",
+            width: "12vw",
+            height: "12vh",
             top: `${coordinates[0]}vh`,
-            left: `${coordinates[1]}vh`,
+            left: `${coordinates[1]}vw`,
             boxSizing: "border-box",
             display: 'inline-block'
         }}
