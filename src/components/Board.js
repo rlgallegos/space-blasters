@@ -4,7 +4,7 @@ import Alien from "./Alien";
 import Score from "./Score";
 import { useNavigate } from "react-router-dom";
 
-function Board({ isLoggedIn }) {
+function Board({ isLoggedIn, currentUser }) {
   const [alienArray, setAlienArray] = useState([]);
   const [xAxis, setxAxis] = useState(115);
   const [alienRects, setAlienRects] = useState([]);
@@ -116,6 +116,7 @@ function Board({ isLoggedIn }) {
           //update score
           setScore(score + 10);
         }
+
       }
     }, 0);
   }
@@ -162,6 +163,9 @@ function Board({ isLoggedIn }) {
           border: "1px solid black",
         }}
       ></div>
+      <div className="BoardTitle">
+        <p>Current User - {currentUser.username}</p>
+      </div>
       <div className="gameboard">{alienArray}</div>
       <Score score={score} />
     </>

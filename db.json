@@ -109,6 +109,17 @@
         "level": 0
       },
       "id": 12
+    },
+    {
+      "username": "eshwar",
+      "email": "test@gmail.com",
+      "hashPass": "$2a$05$M4q7fpHRdDAZhWQEKiVo8OZJBTzCHVjaGtZ4vY/0Lg5yH4EG3Bzv6",
+      "state": {
+        "score": "",
+        "level": "",
+        "livesRemaining": ""
+      },
+      "id": 13
     }
   ]
 }
