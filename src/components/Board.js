@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import Alien from "./Alien";
+import Score from "./Score";
 
 function Board() {
   const [alienArray, setAlienArray] = useState([])
   const [xAxis, setxAxis] = useState(115);
   const [alienRects, setAlienRects] = useState([])
-
+  const [score, setScore] = useState(0)
 
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const level = 1;
@@ -105,6 +106,9 @@ function Board() {
           //delete alien
           const updatedArray = alienArray.filter(each => each.props.id !== alienArray[i].props.id)
           setAlienArray(updatedArray)
+
+          //update score
+          setScore(score + 10)
         }
       }
     }, 0);
@@ -148,14 +152,13 @@ function Board() {
           width: "25px",
           backgroundColor: "white",
           border: "1px solid black",
-          boxSizing: "border-box"
         }}
       >
       </div>
       <div className="gameboard">
       {alienArray}
       </div>
-      
+      <Score score={score} />
     </>
   );
 }
