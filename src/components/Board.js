@@ -146,11 +146,11 @@ function Board() {
           left: `${xAxis}vh`,
           height: "25px",
           width: "25px",
-          backgroundColor: "white",
           border: "1px solid black",
           boxSizing: "border-box"
         }}
       >
+        <img id="player-image"/>
       </div>
       <div className="gameboard">
       {alienArray}
