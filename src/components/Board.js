@@ -4,18 +4,23 @@ import Alien from "./Alien";
 
 function Board() {
   const [alienArray, setAlienArray] = useState([])
+  const [xAxis, setxAxis] = useState(115);
+  const [alienRects, setAlienRects] = useState([])
+
+
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const level = 1;
+  
 
   useEffect(() => {
 
     let alienY = [];
     for (let i = 0; i < level * 5; i++) {
-      alienY.push(Math.floor(Math.random() * (90 - 15) ) + 15);
+      alienY.push(Math.floor(Math.random() * (0 - 75) ) + 75);
     }
     let alienX = [];
     for (let i = 0; i < level * 5; i++) {
-      alienX.push(Math.floor(Math.random() * (90 - 15) ) + 15);
+      alienX.push(Math.floor(Math.random() * (0 - 50) ) + 50);
     }
   
     let zip = (alienX, alienY) => {
@@ -24,13 +29,35 @@ function Board() {
   
     let coordinates = zip(alienX, alienY)
   
+    let uniqueId = -1;
     const newArray = coordinates.map(each => {
-      return <Alien coordinates={each} />
+      uniqueId++
+      return <Alien id={uniqueId} key={uniqueId} coordinates={each} />
     })
     setAlienArray(newArray)
   }, [])
 
-  const [xAxis, setxAxis] = useState(100);
+  useEffect(() => {
+    //gather an array of Alien Divs
+    //each has a class of aliens to gather
+    //each has a unique ID to identify
+    let aliens = document.getElementsByClassName('aliens')
+
+    if(aliens) {
+      let alienArray = Array.from(aliens)
+      let rectArray = []
+      alienArray.forEach(alien => {
+        rectArray.push(alien.getBoundingClientRect())
+      setAlienRects(rectArray)
+      })
+    }
+
+
+  }, [alienArray])
+
+  //CURRENTLY HOLDS ALL RECTANGLES FOR ALIENS CURRENTLY IN EXISTANCE
+  // console.log(alienRects)
+
 
   function createBullet() {
     //element creation
@@ -50,31 +77,50 @@ function Board() {
     sendBullet(newDiv);
   }
 
-  //while > 10vh
 
   function sendBullet(newDiv) {
     let interval = setInterval(() => {
       newDiv.style.top = newDiv.offsetTop - 1 + "px";
 
+      const bulletRect = newDiv.getBoundingClientRect()
+
       const gameTop = gameboard.offsetTop
 
+      //if reaches the top of the gameboard
       if (newDiv.offsetTop <= gameTop) {
         clearInterval(interval);
         gameboard.removeChild(newDiv);
+      }
+
+      //if reaches an alien
+      for (let i = 0; i < alienRects.length; i++) {
+        if ( (alienRects[i].bottom >= bulletRect.top) && (alienRects[i].left <= bulletRect.left) && (alienRects[i].right >= bulletRect.right) ) {
+          console.log('collision marked')
+          // console.log(i + 1)
+
+          //delete bullet
+          clearInterval(interval);
+          gameboard.removeChild(newDiv);
+
+          //delete alien
+          const updatedArray = alienArray.filter(each => each.props.id !== alienArray[i].props.id)
+          setAlienArray(updatedArray)
+        }
       }
     }, 0);
   }
 
   function handleKeyDown(e) {
-    console.log(e.target)
+    let shipOffsetRight = (window.innerWidth - e.target.offsetLeft - e.target.offsetWidth)
+    let gameboardOffsetRight = (window.innerWidth - gameboard.offsetLeft - gameboard.offsetWidth)
     switch (e.key) {
       case "a":
-        if (xAxis > 60) {
+        if (e.target.offsetLeft >= (gameboard.offsetLeft + 12)) {
           setxAxis(xAxis - 2);
         }
         break;
       case "d":
-        if (xAxis < 134) {
+        if (shipOffsetRight >= (gameboardOffsetRight + 5)) {
           setxAxis(xAxis + 2);
         }
         break;
@@ -94,15 +140,15 @@ function Board() {
         onKeyDown={handleKeyDown}
         tabIndex="0"
         style={{
-          position: "relative",
+          boxSizing: "border-box",
+          position: "absolute",
           top: "80vh",
           left: `${xAxis}vh`,
           height: "25px",
           width: "25px",
           backgroundColor: "white",
           border: "1px solid black",
-          userSelect: true
-
+          boxSizing: "border-box"
         }}
       >
       </div>

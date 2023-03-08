@@ -1,7 +1,6 @@
 import React from "react"
 
-function Alien({coordinates}) {
-
+function Alien({id, coordinates}) {
 
 
     return(
@@ -12,8 +11,10 @@ function Alien({coordinates}) {
             width: "25px",
             height: "25px",
             top: `${coordinates[0]}vh`,
-            left: `${coordinates[1]}%`
+            left: `${coordinates[1]}vh`,
         }}
+        className='aliens'
+        id={id}
         >
 
         </div>
