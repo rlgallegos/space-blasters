@@ -19,7 +19,6 @@ function App() {
       });
   }, []);
 
-
   return (
     <div className="App">
       <main>
@@ -28,7 +27,7 @@ function App() {
             path="/"
             element={
               <Intro
-              setCurrentUser={setCurrentUser}
+                setCurrentUser={setCurrentUser}
                 userData={userData}
                 setUserData={setUserData}
                 isLoggedIn={isLoggedIn}
@@ -38,7 +37,13 @@ function App() {
           />
           <Route
             path="/user/:id"
-            element={<IDMenu isLoggedIn={isLoggedIn} currentUser={currentUser} />}
+            element={
+              <IDMenu
+                isLoggedIn={isLoggedIn}
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            }
           />
           {/* Finn's Id Page Component goes as the element in the route above */}
           <Route path="/game" element={<Board isLoggedIn={isLoggedIn} currentUser={currentUser} />} />
