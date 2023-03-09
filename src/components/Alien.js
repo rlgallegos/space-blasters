@@ -11,7 +11,7 @@ function Alien({alienIndex, lives, setLives, alienImageArray, id, coordinates}) 
     const alienDiv= document.createElement("div");
     alienBoard.appendChild(alienDiv);
     alienDiv.style.backgroundColor = "red";
-    alienDiv.style.width = "10px";
+    alienDiv.style.width = "5px";
     alienDiv.style.height = "10px";
     alienDiv.style.position = "absolute";
     alienDiv.style.left = `${coordinates[1] + 5.5}vw`;
@@ -53,8 +53,8 @@ function Alien({alienIndex, lives, setLives, alienImageArray, id, coordinates}) 
         <div
         style={{
             position: "absolute",
-            width: "12vw",
-            height: "12vh",
+            width: "10vw",
+            height: "10vh",
             top: `${coordinates[0]}vh`,
             left: `${coordinates[1]}vw`,
             boxSizing: "border-box",
