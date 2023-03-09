@@ -119,6 +119,10 @@ function Board({ isLoggedIn, currentUser }) {
         });
       }
 
+      function playAlienExplosion(){
+        const alienExplosion = new Audio("./hq-explosion-6288.mp3").play()
+    }
+
       const bulletRect = newDiv.getBoundingClientRect();
 
       const gameTop = gameboard.offsetTop;
@@ -146,6 +150,7 @@ function Board({ isLoggedIn, currentUser }) {
           setRemainingAliens((remainingAliens) => remainingAliens - 1)
 
           setAlienArray(updatedArray);
+          playAlienExplosion()
           //update score
           setScore(score + 10); 
         }
@@ -155,6 +160,10 @@ function Board({ isLoggedIn, currentUser }) {
       }
     }, 0);
   }
+
+  function playLaser(){
+    const laser = new Audio("./blaster-2-81267.mp3").play()
+}
 
   //controls logic
   function handleKeyDown(e) {
@@ -175,6 +184,7 @@ function Board({ isLoggedIn, currentUser }) {
         break;
       case " ":
         createBullet();
+        playLaser();
         break;
       default:
         return;
