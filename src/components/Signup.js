@@ -85,7 +85,7 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="SignupForm" onSubmit={handleSubmit}>
       <input
         name="username"
         onChange={handleChange}
