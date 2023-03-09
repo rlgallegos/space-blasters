@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 
-function Alien({lives, setLives, alienImageArray, id, coordinates}) {
+function Alien({alienIndex, lives, setLives, alienImageArray, id, coordinates}) {
     let [nextBullet, setNextBullet] = useState(0)
 
     const alienBoard = document.getElementsByClassName("gameboard")[0]
@@ -39,10 +39,7 @@ function Alien({lives, setLives, alienImageArray, id, coordinates}) {
     
     //if it hits the ship
     const shipRect = ship.getBoundingClientRect()
-    if (alienRect.bottom >= (shipRect.top + 30 ) && alienRect.left >= (shipRect.left + 10) && alienRect.right <= (shipRect.right - 10)) {
-        console.log(lives)
-        console.log(shipRect.top)
-        console.log(shipRect.left)
+    if (alienRect.bottom >= shipRect.top + 25 && alienRect.left >= shipRect.left + 50 && alienRect.right <= shipRect.right - 50) {
         setLives((lives) => lives - 1)
         setNextBullet(++nextBullet)
         clearInterval(alienInterval);
@@ -66,7 +63,7 @@ function Alien({lives, setLives, alienImageArray, id, coordinates}) {
         className='aliens'
         id={id}
         >
-            <img src={alienImageArray[id]} className="alien-image" />
+            <img src={alienImageArray[alienIndex]} alt='Enemy Ship' className="alien-image" />
         </div>
     )
 }

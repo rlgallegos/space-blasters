@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import Alien from "./Alien";
-import Scoreboard from "./Score";
+import Scoreboard from "./Scoreboard";
 import { useNavigate } from "react-router-dom";
 
 function Board({ isLoggedIn, currentUser }) {
@@ -10,26 +10,39 @@ function Board({ isLoggedIn, currentUser }) {
   const [alienRects, setAlienRects] = useState([]);
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3)
-  const [level, setLevel] = useState(1)
+  const [level, setLevel] = useState(0)
+  const [remainingAliens, setRemainingAliens] = useState(0)
 
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!lives) {
-      alert("Game Over")
-      navigate(`/user/${currentUser['id']}`)
-    }
-  }, [lives])
 
   useEffect(() => {
+    if (!remainingAliens) {
+      setLevel((level) => level + 1)
+    }
+  }, [remainingAliens])
+  
+
+
+  ///THIS IS ALERT LOGIC: DO NOT DELETE
+
+  // useEffect(() => {
+  //   if (!lives) {
+  //     alert("Game Over")
+  //     navigate(`/user/${currentUser['id']}`)
+  //   }
+  // }, [lives])
+
+  useEffect(() => {
+    setRemainingAliens(level * 2)
 
     let alienY = [];
-    for (let i = 0; i < level * 5; i++) {
+    for (let i = 0; i < level * 2; i++) {
       alienY.push(Math.floor(Math.random() * (80 - 20) ) + 10);
     }
     let alienX = [];
-    for (let i = 0; i < level * 5; i++) {
+    for (let i = 0; i < level * 2; i++) {
       alienX.push(Math.floor(Math.random() * (10 - 65) ) + 65);
     }
 
@@ -41,17 +54,21 @@ function Board({ isLoggedIn, currentUser }) {
 
     let alienImageArray = [
       '/Alien A.png', '/Alien B.png', '/Alien C.png', '/Alien D.png', 'Alien E.png'];
+
+    let alienIndex = 0;
   
     let uniqueId = -1;
     const newArray = coordinates.map(each => {
+      alienIndex++
       uniqueId++
-      return <Alien id={uniqueId} key={uniqueId} coordinates={each} alienImageArray={alienImageArray} lives={lives} setLives={setLives} />
+      return <Alien id={uniqueId} key={uniqueId} coordinates={each} alienImageArray={alienImageArray} alienIndex={alienIndex} lives={lives} setLives={setLives} />
     })
     setAlienArray(newArray)
   }, [level])
 
 
   useEffect(() => {
+
     let aliens = document.getElementsByClassName("aliens");
 
     if (aliens) {
@@ -86,6 +103,19 @@ function Board({ isLoggedIn, currentUser }) {
     let interval = setInterval(() => {
       newDiv.style.top = newDiv.offsetTop - 1 + "px";
 
+
+      let aliens = document.getElementsByClassName("aliens");
+
+      if (aliens) {
+        let alienArray = Array.from(aliens);
+        let rectArray = [];
+        alienArray.forEach((alien) => {
+          rectArray.push(alien.getBoundingClientRect());
+          setAlienRects(rectArray);
+        });
+      }
+
+
       const bulletRect = newDiv.getBoundingClientRect();
 
       const gameTop = gameboard.offsetTop;
@@ -98,7 +128,7 @@ function Board({ isLoggedIn, currentUser }) {
 
       //if reaches an alien
       for (let i = 0; i < alienRects.length; i++) {
-        if ( (alienRects[i].bottom >= bulletRect.top) && ((alienRects[i].left - 10 )<= bulletRect.left) && ((alienRects[i].right + 10) >= bulletRect.right) ) {
+        if ( (alienRects[i].bottom >= bulletRect.top + 40) && ((alienRects[i].left + 50 )<= bulletRect.left) && ((alienRects[i].right - 50) >= bulletRect.right) ) {
 
           // console.log(i + 1)
 
@@ -111,6 +141,7 @@ function Board({ isLoggedIn, currentUser }) {
             (each) => each.props.id !== alienArray[i].props.id
           );
           setAlienArray(updatedArray);
+          setRemainingAliens((remainingAliens) => remainingAliens - 1)
           
           //update score
           setScore(score + 10);
@@ -138,7 +169,6 @@ function Board({ isLoggedIn, currentUser }) {
         }
         break;
       case " ":
-        console.log("space found");
         createBullet();
         break;
       default:
@@ -158,9 +188,9 @@ function Board({ isLoggedIn, currentUser }) {
           top: "80vh",
           left: `${xAxis}vw`,
           height: "12vh",
-          width: "12vw",
+          width: "12vw"
         }}
-      ><img id="player-image" src='/player.png'/></div>
+      ><img id="player-image" src='/player.png' alt="The Ship" /></div>
       <div className="BoardTitle">
         <p>Current User - {currentUser.username}</p>
         
