@@ -12,20 +12,21 @@ function Board({ isLoggedIn, currentUser }) {
   const [lives, setLives] = useState(3)
   const [level, setLevel] = useState(0)
   const [remainingAliens, setRemainingAliens] = useState(0)
+  const [collision, setCollision] = useState(false)
 
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const navigate = useNavigate();
 
   /////////This is my code.
 
-
   useEffect(() => {
-    if (!remainingAliens) {
-
-      setLevel((level) => level + 1)
+    if (!alienArray.length) {
+      console.log('reached this unfortunate point')
+      setLevel(level + 1)
     }
   }, [remainingAliens])
   
+
 
 
   ///THIS IS ALERT LOGIC: DO NOT DELETE
@@ -38,6 +39,7 @@ function Board({ isLoggedIn, currentUser }) {
   // }, [lives])
 
   useEffect(() => {
+
     setRemainingAliens(level * 2)
 
     let alienY = [];
@@ -57,32 +59,31 @@ function Board({ isLoggedIn, currentUser }) {
 
     let alienImageArray = [
       '/Alien A.png', '/Alien B.png', '/Alien C.png', '/Alien D.png', 'Alien E.png'];
-
-    let alienIndex = 0;
   
     let uniqueId = -1;
     const newArray = coordinates.map(each => {
-      alienIndex++
+      console.log('reached this horrible point')
       uniqueId++
-      return <Alien id={uniqueId} key={uniqueId} coordinates={each} alienImageArray={alienImageArray} alienIndex={alienIndex} lives={lives} setLives={setLives} />
+      let alienImageIndex = Math.floor(Math.random() * (5 - 0) ) + 0
+      return <Alien id={uniqueId} key={uniqueId} coordinates={each} alienImageIndex={alienImageIndex} alienImageArray={alienImageArray} lives={lives} setLives={setLives} />
     })
     setAlienArray(newArray)
   }, [level])
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    let aliens = document.getElementsByClassName("aliens");
+  //   let aliens = document.getElementsByClassName("aliens");
 
-    if (aliens) {
-      let alienArray = Array.from(aliens);
-      let rectArray = [];
-      alienArray.forEach((alien) => {
-        rectArray.push(alien.getBoundingClientRect());
-        setAlienRects(rectArray);
-      });
-    }
-  }, [alienArray]);
+  //   if (aliens) {
+  //     let alienArray = Array.from(aliens);
+  //     let rectArray = [];
+  //     alienArray.forEach((alien) => {
+  //       rectArray.push(alien.getBoundingClientRect());
+  //       setAlienRects(rectArray);
+  //     });
+  //   }
+  // }, [alienArray]);
 
   function createBullet() {
     //element creation
@@ -106,13 +107,13 @@ function Board({ isLoggedIn, currentUser }) {
     let interval = setInterval(() => {
       newDiv.style.top = newDiv.offsetTop - 1 + "px";
 
-
+      let rectArray = [];
       let aliens = document.getElementsByClassName("aliens");
-
       if (aliens) {
-        let alienArray = Array.from(aliens);
-        let rectArray = [];
-        alienArray.forEach((alien) => {
+        let newAlienArray = Array.from(aliens);
+        
+          newAlienArray.forEach((alien) => {
+          
           rectArray.push(alien.getBoundingClientRect());
           setAlienRects(rectArray);
         });
@@ -129,12 +130,12 @@ function Board({ isLoggedIn, currentUser }) {
         gameboard.removeChild(newDiv);
       }
 
+
       //if reaches an alien
-      for (let i = 0; i < alienRects.length; i++) {
-        if ( (alienRects[i].bottom >= bulletRect.top + 40) && ((alienRects[i].left + 50 )<= bulletRect.left) && ((alienRects[i].right - 50) >= bulletRect.right) ) {
+      for (let i = 0; i < rectArray.length; i++) {
+        if ( (rectArray[i].bottom >= bulletRect.top + 40) && ((rectArray[i].left + 50 )<= bulletRect.left) && ((rectArray[i].right - 50) >= bulletRect.right) ) {
 
-          // console.log(i + 1)
-
+          console.log('checkpoint reached')
           //delete bullet
           clearInterval(interval);
           gameboard.removeChild(newDiv);
@@ -143,12 +144,14 @@ function Board({ isLoggedIn, currentUser }) {
           const updatedArray = alienArray.filter(
             (each) => each.props.id !== alienArray[i].props.id
           );
-          setAlienArray(updatedArray);
           setRemainingAliens((remainingAliens) => remainingAliens - 1)
-          
+
+          setAlienArray(updatedArray);
           //update score
-          setScore(score + 10);
+          setScore(score + 10); 
         }
+
+   
 
       }
     }, 0);
@@ -162,12 +165,12 @@ function Board({ isLoggedIn, currentUser }) {
       window.innerWidth - gameboard.offsetLeft - gameboard.offsetWidth;
     switch (e.key) {
       case "a":
-        if (e.target.offsetLeft >= gameboard.offsetLeft + 12) {
+        if (e.target.offsetLeft >= gameboard.offsetLeft) {
           setxAxis(xAxis - 2);
         }
         break;
       case "d":
-        if (shipOffsetRight >= gameboardOffsetRight + 5) {
+        if (shipOffsetRight >= gameboardOffsetRight) {
           setxAxis(xAxis + 2);
         }
         break;
@@ -178,6 +181,8 @@ function Board({ isLoggedIn, currentUser }) {
         return;
     }
   }
+
+  let alienList = [...alienArray]
 
   return (
     <>

@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react"
 
-function Alien({alienIndex, lives, setLives, alienImageArray, id, coordinates}) {
+function Alien({ alienImageIndex, lives, setLives, alienImageArray, id, coordinates}) {
     let [nextBullet, setNextBullet] = useState(0)
+    console.log(coordinates)
 
     const alienBoard = document.getElementsByClassName("gameboard")[0]
     const boardRect = alienBoard.getBoundingClientRect()
@@ -19,7 +20,7 @@ function Alien({alienIndex, lives, setLives, alienImageArray, id, coordinates}) 
     alienDiv.style.margin = '0px'
     sendAllienBullet(alienDiv);
 }
-    
+
     useEffect(() => {
         //set timeout
         let interval = Math.floor(Math.random() * (4000 - 0) ) + 0
@@ -69,7 +70,7 @@ function Alien({alienIndex, lives, setLives, alienImageArray, id, coordinates}) 
         className='aliens'
         id={id}
         >
-            <img src={alienImageArray[alienIndex]} alt='Enemy Ship' className="alien-image" />
+            <img src={alienImageArray[alienImageIndex]} alt='Enemy Ship' className="alien-image" />
         </div>
     )
 }
