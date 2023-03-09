@@ -8,9 +8,12 @@ function IDMenu({ isLoggedIn, currentUser, setCurrentUser }) {
   const [userData, setUserData] = useState([]);
   const navigate = useNavigate();
 
-  if (isLoggedIn === false) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (isLoggedIn === false) {
+      navigate("/");
+    }
+  })
+  
 
   useEffect(() => {
     fetch("http://localhost:3000/users")

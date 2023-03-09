@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import Alien from "./Alien";
-import Score from "./Score";
+import Scoreboard from "./Score";
 import { useNavigate } from "react-router-dom";
 
 function Board({ isLoggedIn, currentUser }) {
@@ -9,20 +9,21 @@ function Board({ isLoggedIn, currentUser }) {
   const [xAxis, setxAxis] = useState(50);
   const [alienRects, setAlienRects] = useState([]);
   const [score, setScore] = useState(0);
+  const [lives, setLives] = useState(3)
+  const [level, setLevel] = useState(1)
 
   const gameboard = document.getElementsByClassName("gameboard")[0];
-  const level = 1;
   const navigate = useNavigate();
-  if (gameboard){
-    const gameboardRect = gameboard.getBoundingClientRect()
-    console.log(gameboardRect)
-  }
-
-  // if (isLoggedIn === false) {
-  //   navigate("/");
-  // }
 
   useEffect(() => {
+    if (!lives) {
+      alert("Game Over")
+      navigate(`/user/${currentUser['id']}`)
+    }
+  }, [lives])
+
+  useEffect(() => {
+
     let alienY = [];
     for (let i = 0; i < level * 5; i++) {
       alienY.push(Math.floor(Math.random() * (80 - 20) ) + 10);
@@ -44,15 +45,13 @@ function Board({ isLoggedIn, currentUser }) {
     let uniqueId = -1;
     const newArray = coordinates.map(each => {
       uniqueId++
-      return <Alien id={uniqueId} key={uniqueId} coordinates={each} alienImageArray={alienImageArray} />
+      return <Alien id={uniqueId} key={uniqueId} coordinates={each} alienImageArray={alienImageArray} lives={lives} setLives={setLives} />
     })
     setAlienArray(newArray)
-  }, [])
+  }, [level])
+
 
   useEffect(() => {
-    //gather an array of Alien Divs
-    //each has a class of aliens to gather
-    //each has a unique ID to identify
     let aliens = document.getElementsByClassName("aliens");
 
     if (aliens) {
@@ -64,9 +63,6 @@ function Board({ isLoggedIn, currentUser }) {
       });
     }
   }, [alienArray]);
-
-  //CURRENTLY HOLDS ALL RECTANGLES FOR ALIENS CURRENTLY IN EXISTANCE
-  // console.log(alienRects)
 
   function createBullet() {
     //element creation
@@ -103,7 +99,7 @@ function Board({ isLoggedIn, currentUser }) {
       //if reaches an alien
       for (let i = 0; i < alienRects.length; i++) {
         if ( (alienRects[i].bottom >= bulletRect.top) && ((alienRects[i].left - 10 )<= bulletRect.left) && ((alienRects[i].right + 10) >= bulletRect.right) ) {
-          console.log('collision marked')
+
           // console.log(i + 1)
 
           //delete bullet
@@ -115,7 +111,7 @@ function Board({ isLoggedIn, currentUser }) {
             (each) => each.props.id !== alienArray[i].props.id
           );
           setAlienArray(updatedArray);
-
+          
           //update score
           setScore(score + 10);
         }
@@ -124,6 +120,7 @@ function Board({ isLoggedIn, currentUser }) {
     }, 0);
   }
 
+  //controls logic
   function handleKeyDown(e) {
     let shipOffsetRight =
       window.innerWidth - e.target.offsetLeft - e.target.offsetWidth;
@@ -180,7 +177,8 @@ function Board({ isLoggedIn, currentUser }) {
       position="absolute"
       width='200px' /> */}
       </div>
-      
+      <Scoreboard level={level} score={score} />
+      <h3>Lives: {lives}</h3>
     </>
   );
 }

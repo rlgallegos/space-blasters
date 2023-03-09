@@ -3,8 +3,6 @@ import React from "react";
 function CurrentUser({ currentUser }) {
   const { username, email, state } = currentUser;
 
-  console.log(username, email, state);
-  console.log(state);
   //   const score = state.score;
   return (
     <div className="CurrentUserData">

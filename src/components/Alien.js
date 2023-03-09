@@ -1,11 +1,11 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 
-function Alien({alienImageArray, id, coordinates}) {
-    console.log(coordinates)
+function Alien({lives, setLives, alienImageArray, id, coordinates}) {
+    let [nextBullet, setNextBullet] = useState(0)
 
-const alienBoard = document.getElementsByClassName("gameboard")[0]
-const boardRect = alienBoard.getBoundingClientRect()
-const ship = document.getElementsByClassName('ship')
+    const alienBoard = document.getElementsByClassName("gameboard")[0]
+    const boardRect = alienBoard.getBoundingClientRect()
+    let ship = document.getElementsByClassName('ship')[0]
 
   function createAllienBullet(){
     const alienDiv= document.createElement("div");
@@ -18,17 +18,21 @@ const ship = document.getElementsByClassName('ship')
     alienDiv.style.top = `${coordinates[0] + 5.5}vh`;
     alienDiv.style.margin = '0px'
     sendAllienBullet(alienDiv);
-} 
+}
+    
+    useEffect(() => {
+        createAllienBullet()
+    }, [nextBullet])
 
-setInterval(createAllienBullet, 3000);
-
-  function sendAllienBullet(alienDiv){
+    function sendAllienBullet(alienDiv){
     let alienInterval = setInterval(()=> {
+
     let alienRect = alienDiv.getBoundingClientRect();
     alienDiv.style.top = alienDiv.offsetTop + 1 + "px";
 
     //if it reaches the bottom
     if (alienRect.bottom > boardRect.bottom){
+        setNextBullet(++nextBullet)
         clearInterval(alienInterval);
         alienBoard.removeChild(alienDiv);
     }  
@@ -36,7 +40,11 @@ setInterval(createAllienBullet, 3000);
     //if it hits the ship
     const shipRect = ship.getBoundingClientRect()
     if (alienRect.bottom >= shipRect.top && alienRect.left >= shipRect.left && alienRect.right <= shipRect.right) {
-        console.log('I was hit')
+        console.log(lives)
+        setLives((lives) => lives - 1)
+        setNextBullet(++nextBullet)
+        clearInterval(alienInterval);
+        alienBoard.removeChild(alienDiv);
     }
 
     }, 0 )
