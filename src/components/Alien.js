@@ -21,12 +21,18 @@ function Alien({alienIndex, lives, setLives, alienImageArray, id, coordinates}) 
 }
     
     useEffect(() => {
-        createAllienBullet()
+        //set timeout
+        let interval = Math.floor(Math.random() * (4000 - 0) ) + 0
+        
+        setTimeout(() => {
+            createAllienBullet()
+        }, interval)
+        
     }, [nextBullet])
 
     function sendAllienBullet(alienDiv){
     let alienInterval = setInterval(()=> {
-
+        
     let alienRect = alienDiv.getBoundingClientRect();
     alienDiv.style.top = alienDiv.offsetTop + 1 + "px";
 

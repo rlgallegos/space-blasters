@@ -19,6 +19,7 @@ function Board({ isLoggedIn, currentUser }) {
 
   useEffect(() => {
     if (!remainingAliens) {
+
       setLevel((level) => level + 1)
     }
   }, [remainingAliens])
@@ -207,7 +208,7 @@ function Board({ isLoggedIn, currentUser }) {
       position="absolute"
       width='200px' /> */}
       </div>
-      <Scoreboard level={level} score={score} />
+      <Scoreboard currentUser={currentUser} level={level} score={score} />
       <h3>Lives: {lives}</h3>
     </>
   );

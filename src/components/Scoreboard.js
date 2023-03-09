@@ -1,10 +1,11 @@
 
-function Scoreboard({level, score}) {
+function Scoreboard({currentUser, level, score}) {
 
-    //patch state logic based on if the level can be
-    //divided by 5 with no remainder
+    // patch state logic based on if the level can be
+    // divided by 5 with no remainder
+    
     // if (level % 5 === 0) {
-    //     patch logic
+    //     fetch(`http://localhost:3000/users/${}`)
     // }
 
     return (
