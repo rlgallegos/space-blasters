@@ -11,7 +11,7 @@ function Alien({lives, setLives, alienImageArray, id, coordinates}) {
     const alienDiv= document.createElement("div");
     alienBoard.appendChild(alienDiv);
     alienDiv.style.backgroundColor = "red";
-    alienDiv.style.width = "10px";
+    alienDiv.style.width = "5px";
     alienDiv.style.height = "10px";
     alienDiv.style.position = "absolute";
     alienDiv.style.left = `${coordinates[1] + 5.5}vw`;
@@ -39,8 +39,10 @@ function Alien({lives, setLives, alienImageArray, id, coordinates}) {
     
     //if it hits the ship
     const shipRect = ship.getBoundingClientRect()
-    if (alienRect.bottom >= shipRect.top && alienRect.left >= shipRect.left && alienRect.right <= shipRect.right) {
+    if (alienRect.bottom >= (shipRect.top + 30 ) && alienRect.left >= (shipRect.left + 10) && alienRect.right <= (shipRect.right - 10)) {
         console.log(lives)
+        console.log(shipRect.top)
+        console.log(shipRect.left)
         setLives((lives) => lives - 1)
         setNextBullet(++nextBullet)
         clearInterval(alienInterval);
@@ -54,8 +56,8 @@ function Alien({lives, setLives, alienImageArray, id, coordinates}) {
         <div
         style={{
             position: "absolute",
-            width: "12vw",
-            height: "12vh",
+            width: "10vw",
+            height: "10vh",
             top: `${coordinates[0]}vh`,
             left: `${coordinates[1]}vw`,
             boxSizing: "border-box",
