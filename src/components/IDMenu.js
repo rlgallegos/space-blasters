@@ -12,8 +12,7 @@ function IDMenu({ isLoggedIn, currentUser, setCurrentUser }) {
     if (isLoggedIn === false) {
       navigate("/");
     }
-  })
-  
+  });
 
   useEffect(() => {
     fetch("http://localhost:3000/users")
@@ -23,6 +22,8 @@ function IDMenu({ isLoggedIn, currentUser, setCurrentUser }) {
 
   return (
     <div>
+      <div className="starsHome"></div>
+      <div className="twinklingHome"> </div>
       <LeaderBoard key={userData.id} userData={userData} />
 
       {isLoggedIn ? (

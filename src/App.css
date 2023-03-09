@@ -13,7 +13,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 25vh;
   width: 100%;
   display: flex;
@@ -52,13 +51,24 @@
     margin: 10vh auto;
     height: 80vh;
     width: 80vw;
-    background-color: rgba(4, 3, 50)	 ;
+    background-color: rgba(4, 3, 50);
     z-index: -1;
     border: 5px;
     border-color: black;
     border-style: solid;
     display: inline-block;
   }
+}
+
+.SignupForm {
+  scale: 125%;
+  padding-top: 1%;
+  z-index: 1;
+}
+
+.LoginForm {
+  scale: 125%;
+  z-index: 1;
 }
 
 .ContinueMenu {
@@ -71,18 +81,34 @@
   margin-left: auto;
   margin-right: auto;
   align-items: center;
-  border-spacing: 35px;
+  border-spacing: 30px;
+  color: white;
 }
 
 .LeaderBoardTable {
   float: right;
   font-size: larger;
   border-spacing: 15px;
+  color: white;
 }
 
 @font-face {
   font-family: Determination;
   src: url("../public/Determination.ttf");
+}
+
+@font-face {
+  font-family: Barcade;
+  src: url("../public/Barcade.otf");
+}
+
+.MainTitle {
+  font-family: Barcade;
+  opacity: 75%;
+  color: rgb(69, 115, 223);
+  margin: 0 auto;
+  margin-top: 25vh;
+  scale: 250%;
 }
 
 .MenuButton {
@@ -100,10 +126,12 @@ input {
 }
 
 .CurrentUserTitle {
-  margin-left: 8%;
+  margin-left: 0 auto;
+  color: white;
 }
 
-.LeaderBoardTitle {
+.LeaderBoardTitle,
+.LeaderBoardTable {
   font-weight: bold;
 }
 #player-image {
@@ -120,5 +148,107 @@ input {
 .BoardTitle {
   position: fixed;
   font-size: larger;
-  left: 45%
+  left: 45%;
+}
+
+@keyframes move-clouds-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 10000px 0;
+  }
+}
+
+@keyframes move-twinkle-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 0;
+  }
+}
+
+#scoreboard {
+  left: 5vh;
+  top: 0vh;
+  color: white;
+  z-index: 1;
+  position: absolute;
+}
+
+.ship {
+  z-index: 1;
+}
+
+.stars,
+.twinkling {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars {
+  background: #000 url(../public/stars.png) repeat top center;
+  z-index: 0;
+}
+
+.twinkling {
+  background: transparent url(../public/twinkling.png) repeat top center;
+  z-index: 0;
+  animation: move-twinkle-back 200s linear infinite;
+}
+
+.starsHome,
+.twinklingHome {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.starsHome {
+  background: #000 url(../public/stars.png) repeat top center;
+  z-index: -1;
+}
+
+.twinklingHome {
+  background: transparent url(../public/twinkling.png) repeat top center;
+  z-index: -1;
+  animation: move-twinkle-back 200s linear infinite;
+}
+
+#PlanetA {
+  opacity: 80%;
+  z-index: 1;
+  position: absolute;
+  width: 150px;
+  right: 10vh;
+  bottom: 30vh;
+}
+
+#PlanetB {
+  opacity: 80%;
+  z-index: 1;
+  position: absolute;
+  width: 150px;
+  left: 10vh;
+  top: 25vh;
+}
+
+#PlanetC {
+  opacity: 80%;
+  z-index: 1;
+  position: absolute;
+  width: 150px;
+  right: 35vh;
 }

@@ -27,13 +27,11 @@ function CurrentUser({ currentUser }) {
             )}
           </tr>
           <tr>
-            <td>
-              {currentUser.state["livesRemaining"] ? (
-                <td>Lives Remaining: {state["livesRemaining"]}</td>
-              ) : (
-                <td>Lives Remaining: 3</td>
-              )}
-            </td>
+            {currentUser.state["livesRemaining"] ? (
+              <td>Lives Remaining: {state["livesRemaining"]}</td>
+            ) : (
+              <td>Lives Remaining: 3</td>
+            )}
           </tr>
         </thead>
       </table>

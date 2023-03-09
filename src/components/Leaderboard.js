@@ -15,7 +15,7 @@ function LeaderBoard({ userData }) {
       <table className="LeaderBoardTable">
         <thead>
           <tr>
-            <td className="LeaderBoardTitle">LEADERBOARD:Eshwars the best</td>
+            <td className="LeaderBoardTitle">LEADERBOARD:</td>
           </tr>
         </thead>
         <tbody>

@@ -44,18 +44,18 @@ function Board({ isLoggedIn, currentUser }) {
 
     let alienY = [];
     for (let i = 0; i < level * 2; i++) {
-      alienY.push(Math.floor(Math.random() * (80 - 20) ) + 10);
+      alienY.push(Math.floor(Math.random() * (80 - 20)) + 10);
     }
     let alienX = [];
     for (let i = 0; i < level * 2; i++) {
-      alienX.push(Math.floor(Math.random() * (10 - 65) ) + 65);
+      alienX.push(Math.floor(Math.random() * (10 - 65)) + 65);
     }
 
     let zip = (alienX, alienY) => {
-      return alienX.map((number, i) => [number, alienY[i]])
-    }
-  
-    let coordinates = zip(alienX, alienY)
+      return alienX.map((number, i) => [number, alienY[i]]);
+    };
+
+    let coordinates = zip(alienX, alienY);
 
     let alienImageArray = [
       '/Alien A.png', '/Alien B.png', '/Alien C.png', '/Alien D.png', 'Alien E.png'];
@@ -118,7 +118,6 @@ function Board({ isLoggedIn, currentUser }) {
           setAlienRects(rectArray);
         });
       }
-
 
       const bulletRect = newDiv.getBoundingClientRect();
 
@@ -196,16 +195,27 @@ function Board({ isLoggedIn, currentUser }) {
           top: "80vh",
           left: `${xAxis}vw`,
           height: "12vh",
-          width: "12vw"
+          width: "12vw",
         }}
-      ><img id="player-image" src='/player.png' alt="The Ship" /></div>
-      <div className="BoardTitle">
-        <p>Current User - {currentUser.username}</p>
-        
+      >
+        <img id="player-image" src="/player.png" alt="The Ship" />
+      </div>
+      <div className="stars"></div>
+      <div className="twinkling">
+        <img id="PlanetA" src="/PlanetA.png" />
+        <img id="PlanetB" src="/PlanetB.png" />
+        <img id="PlanetC" src="/PlanetC.png" />
+        {/* <img id="DeathStar" src="/DeathStar.png" /> */}
       </div>
       <div className="gameboard">
-      {alienArray}
-      {/* <img src="/Planet A.png"
+        <Scoreboard
+          currentUser={currentUser}
+          level={level}
+          score={score}
+          lives={lives}
+        />
+        {alienArray}
+        {/* <img src="/Planet A.png"
       position="absolute"
       width='150px' />
       <img src="/Planet B.png"
@@ -215,8 +225,6 @@ function Board({ isLoggedIn, currentUser }) {
       position="absolute"
       width='200px' /> */}
       </div>
-      <Scoreboard currentUser={currentUser} level={level} score={score} />
-      <h3>Lives: {lives}</h3>
     </>
   );
 }
