@@ -69,9 +69,9 @@ function Board({ isLoggedIn, currentUser }) {
     const newDiv = document.createElement("div");
 
     gameboard.appendChild(newDiv);
-    newDiv.style.backgroundColor = "black";
+    newDiv.style.backgroundColor = "white";
     newDiv.style.height = "10px";
-    newDiv.style.width = "10px";
+    newDiv.style.width = "5px";
 
     //set location
     newDiv.style.position = "absolute";
