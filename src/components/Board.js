@@ -16,6 +16,8 @@ function Board({ isLoggedIn, currentUser }) {
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const navigate = useNavigate();
 
+  /////////This is my code.
+
 
   useEffect(() => {
     if (!remainingAliens) {
