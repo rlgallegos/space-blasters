@@ -55,7 +55,7 @@ function Login({ userData, isLoggedIn, setIsLoggedIn, setCurrentUser }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="LoginForm" onSubmit={handleSubmit}>
       <input
         name="username"
         onChange={handleChange}

@@ -120,6 +120,28 @@
         "livesRemaining": ""
       },
       "id": 13
+    },
+    {
+      "username": "Finn",
+      "email": "finn@mail.com",
+      "hashPass": "$2a$05$FQ4zTQERlRGUwr9M2UPJi.ugLgA6hN8bAoihgSYl3kon5iE2Iw3ya",
+      "state": {
+        "score": 0,
+        "livesRemaining": 3,
+        "level": 0
+      },
+      "id": 14
+    },
+    {
+      "username": "Sally",
+      "email": "sally@gmail.com",
+      "hashPass": "$2a$05$h.ndFtuhInQow5zzzPf.EOHKL4Az0h4joZi.7FEFtSyqQwf7gZx9q",
+      "state": {
+        "score": "",
+        "level": "",
+        "livesRemaining": ""
+      },
+      "id": 15
     }
   ]
 }
