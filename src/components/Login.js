@@ -54,6 +54,10 @@ function Login({ userData, isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     setCurrentUser(dbUser);
   }
 
+  function handlePlayClickSound() {
+    const clickSound = new Audio("./sparkle.wav").play();
+  }
+
   return (
     <form className="LoginForm" onSubmit={handleSubmit}>
       <input
@@ -70,7 +74,7 @@ function Login({ userData, isLoggedIn, setIsLoggedIn, setCurrentUser }) {
         type="password"
         placeholder="Enter Password"
       />
-      <input type="submit" value="Login" />
+      <input onClick={handlePlayClickSound} type="submit" value="Login" />
       <br></br>
     </form>
   );

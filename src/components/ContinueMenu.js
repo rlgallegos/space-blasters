@@ -1,19 +1,35 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function ContinueMenu({ currentUser, setCurrentUser, setUserData, userData }) {
+function ContinueMenu({
+  currentUser,
+  setCurrentUser,
+  setUserData,
+  userData,
+  music,
+}) {
   const params = useParams();
   // console.log(currentUser["id"]);
   //console.log(setCurrentUser);
 
   const navigate = useNavigate();
+
+  function handlePlayClickSound() {
+    music.pause();
+    navigate("/game");
+  }
+
+  function handleResetClick() {
+    new Audio("./resetState.wav").play();
+  }
+
   return (
     <div>
       <table className="ContinueMenu">
         <thead>
           <tr>
             <td>
-              <button onClick={() => navigate("/game")} className="MenuButton">
+              <button onClick={handlePlayClickSound} className="MenuButton">
                 Continue
               </button>
             </td>
@@ -21,7 +37,7 @@ function ContinueMenu({ currentUser, setCurrentUser, setUserData, userData }) {
           <tr>
             <td>
               <button onClick={handleRestartClick} className="MenuButton">
-                Reset Settings
+                Reset State
               </button>
             </td>
           </tr>
@@ -38,6 +54,7 @@ function ContinueMenu({ currentUser, setCurrentUser, setUserData, userData }) {
   );
 
   function handleRestartClick() {
+    handleResetClick();
     const restartedUser = {
       state: {
         score: 0,
@@ -45,7 +62,6 @@ function ContinueMenu({ currentUser, setCurrentUser, setUserData, userData }) {
         level: 0,
       },
     };
-
     fetch(`http://localhost:3000/users/${params["id"]}`, {
       method: "PATCH",
       headers: {
