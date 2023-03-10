@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react"
 
+
 function Alien({ alienImageIndex, lives, setLives, alienImageArray, id, coordinates}) {
     let [nextBullet, setNextBullet] = useState(0)
 
@@ -7,6 +8,10 @@ function Alien({ alienImageIndex, lives, setLives, alienImageArray, id, coordina
     const boardRect = alienBoard.getBoundingClientRect()
     let ship = document.getElementsByClassName('ship')[0]
 
+    function playAlienLaser(){
+        const Alienlaser = new Audio("./shoot02wav-14562.mp3").play()
+    }
+  
   function createAllienBullet(){
     const alienDiv= document.createElement("div");
     alienBoard.appendChild(alienDiv);
@@ -17,7 +22,8 @@ function Alien({ alienImageIndex, lives, setLives, alienImageArray, id, coordina
     alienDiv.style.left = `${coordinates[1] + 5.5}vw`;
     alienDiv.style.top = `${coordinates[0] + 5.5}vh`;
     alienDiv.style.margin = '0px'
-    sendAllienBullet(alienDiv);
+    sendAllienBullet(alienDiv)
+    playAlienLaser();
 }
 
     useEffect(() => {
@@ -29,6 +35,10 @@ function Alien({ alienImageIndex, lives, setLives, alienImageArray, id, coordina
         }, interval)
         
     }, [nextBullet])
+
+    function play(){
+        const audio = new Audio("./bad-explosion-6855 (1).mp3").play()
+    }
 
     function sendAllienBullet(alienDiv){
     let alienInterval = setInterval(()=> {
@@ -50,6 +60,7 @@ function Alien({ alienImageIndex, lives, setLives, alienImageArray, id, coordina
         setNextBullet(++nextBullet)
         clearInterval(alienInterval);
         alienBoard.removeChild(alienDiv);
+        play()
     }
 
     }, 0 )

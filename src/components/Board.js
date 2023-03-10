@@ -132,6 +132,10 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
         });
       }
 
+      function playAlienExplosion(){
+        const alienExplosion = new Audio("./hq-explosion-6288.mp3").play()
+    }
+
       const bulletRect = newDiv.getBoundingClientRect();
 
       const gameTop = gameboard.offsetTop;
@@ -160,12 +164,18 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
             return updatedArray
           });
 
+          setAlienArray(updatedArray);
+          playAlienExplosion()
           //update score
           setScore(score + 10); 
         }
       }
     }, 0);
   }
+
+  function playLaser(){
+    const laser = new Audio("./blaster-2-81267.mp3").play()
+}
 
   //controls logic
   function handleKeyDown(e) {
@@ -186,6 +196,7 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
         break;
       case " ":
         createBullet();
+        playLaser();
         break;
       default:
         return;
