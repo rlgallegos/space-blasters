@@ -7,6 +7,8 @@ function Intro({
   isLoggedIn,
   setIsLoggedIn,
   setCurrentUser,
+  handlePlayMusic,
+  handlePauseMusic,
 }) {
   if (isLoggedIn) {
     //go to "/user/:id"
@@ -27,6 +29,9 @@ function Intro({
           setUserData={setUserData}
           userData={userData}
         />
+        <button onClick={handlePlayMusic} className="playMusicButton">
+          Play Music
+        </button>
         <h1 className="MainTitle">SPACE BLASTERS</h1>
       </div>
       <div className="starsHome"></div>

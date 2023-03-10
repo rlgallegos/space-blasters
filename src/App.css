@@ -119,6 +119,14 @@
   font-family: Determination;
 }
 
+.playMusicButton {
+  font-family: Determination;
+  scale: 125%;
+  z-index: 1;
+  margin: 0 auto;
+  margin-top: 2vh;
+}
+
 input {
   font-family: Determination;
 }

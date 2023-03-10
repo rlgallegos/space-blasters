@@ -4,7 +4,17 @@ import ContinueMenu from "./ContinueMenu";
 import CurrentUser from "./CurrentUser";
 import LeaderBoard from "./Leaderboard";
 
-function IDMenu({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }) {
+function IDMenu({
+  userData,
+  setUserData,
+  isLoggedIn,
+  currentUser,
+  setCurrentUser,
+  handlePlayMusic,
+  music,
+  handlePauseMusic,
+}) {
+  // const [userData, setUserData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,7 +29,7 @@ function IDMenu({userData, setUserData, isLoggedIn, currentUser, setCurrentUser 
       <div className="twinklingHome"> </div>
       <LeaderBoard userData={userData} />
 
-      {isLoggedIn  ? (
+      {isLoggedIn ? (
         <CurrentUser userData={userData} currentUser={currentUser} />
       ) : null}
       <ContinueMenu
@@ -27,6 +37,8 @@ function IDMenu({userData, setUserData, isLoggedIn, currentUser, setCurrentUser 
         setCurrentUser={setCurrentUser}
         setUserData={setUserData}
         userData={userData}
+        music={music}
+        handlePauseMusic={handlePauseMusic}
       />
     </div>
   );

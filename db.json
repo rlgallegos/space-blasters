@@ -121,17 +121,6 @@
       "id": 13
     },
     {
-      "username": "Finn",
-      "email": "finn@mail.com",
-      "hashPass": "$2a$05$FQ4zTQERlRGUwr9M2UPJi.ugLgA6hN8bAoihgSYl3kon5iE2Iw3ya",
-      "state": {
-        "score": 0,
-        "livesRemaining": 3,
-        "level": 0
-      },
-      "id": 14
-    },
-    {
       "username": "Sally",
       "email": "sally@gmail.com",
       "hashPass": "$2a$05$h.ndFtuhInQow5zzzPf.EOHKL4Az0h4joZi.7FEFtSyqQwf7gZx9q",
@@ -151,6 +140,27 @@
         "level": 14
       },
       "id": 16
+    },
+    {
+      "username": "Finn",
+      "email": "finn@mail.com",
+      "hashPass": "$2a$05$nQbHl.K5lrQIB7LoQkvev.88CtPY8IAezTxjvUA9mx7htGlP/XF3K",
+      "state": {
+        "score": 240,
+        "level": 6
+      },
+      "id": 17
+    },
+    {
+      "username": "finn2",
+      "email": "finn2@mail.com",
+      "hashPass": "$2a$05$f.doQUkDm4Jc8Jg5JZs9a.w7uXxT/RUtW7pPQY6hzaqWw1qxWYPKO",
+      "state": {
+        "score": "",
+        "level": "",
+        "livesRemaining": ""
+      },
+      "id": 18
     }
   ]
 }

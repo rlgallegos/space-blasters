@@ -84,6 +84,10 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
       });
   }
 
+  function handlePlayClickSound() {
+    const clickSound = new Audio("./ClickSound.wav").play();
+  }
+
   return (
     <form className="SignupForm" onSubmit={handleSubmit}>
       <input
@@ -107,7 +111,11 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
         type="password"
         placeholder="Enter Password"
       ></input>
-      <input value="Create New User" type="submit"></input>
+      <input
+        onClick={handlePlayClickSound}
+        value="Create New User"
+        type="submit"
+      ></input>
     </form>
   );
 }
