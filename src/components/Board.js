@@ -158,13 +158,11 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
           //delete alien  
           setRemainingAliens((remainingAliens) => remainingAliens - 1)
           setAlienArray((alienArray) => {
-            const updatedArray = alienArray.filter(
-              (each) => each.props.id !== alienArray[i].props.id
-            );
+            const updatedArray = alienArray.filter((each) => each.props.id !== alienArray[i].props.id);
             return updatedArray
           });
 
-          setAlienArray(updatedArray);
+          // setAlienArray(updatedArray);
           playAlienExplosion()
           //update score
           setScore(score + 10); 
