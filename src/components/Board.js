@@ -15,11 +15,11 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (isLoggedIn === false) {
-  //     navigate("/");
-  //   }
-  // });
+  useEffect(() => {
+    if (isLoggedIn === false) {
+      navigate("/");
+    }
+  });
 
   useEffect(() => {
     if (!alienArray.length) {
@@ -153,13 +153,20 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
 
           //delete bullet
           clearInterval(interval);
-          gameboard.removeChild(newDiv);
+          if (newDiv) {
+            gameboard.removeChild(newDiv);
+          }
+          
 
           //delete alien  
           setRemainingAliens((remainingAliens) => remainingAliens - 1)
           setAlienArray((alienArray) => {
-            const updatedArray = alienArray.filter((each) => each.props.id !== alienArray[i].props.id);
-            return updatedArray
+            if (alienArray[i]) {
+              const updatedArray = alienArray.filter((each) => each.props.id !== alienArray[i].props.id);
+              return updatedArray
+            } else {
+              return alienArray
+            }
           });
 
           // setAlienArray(updatedArray);
