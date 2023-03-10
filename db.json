@@ -141,6 +141,16 @@
         "livesRemaining": ""
       },
       "id": 15
+    },
+    {
+      "username": "El B-Town",
+      "email": "anything@gmail.com",
+      "hashPass": "$2a$05$NhPC2RBS7hZSXVvIXLdlaOtSisxv2PYpoSG8PzJ8zeSnAetV9Q/uK",
+      "state": {
+        "score": 810,
+        "level": 14
+      },
+      "id": 16
     }
   ]
 }
