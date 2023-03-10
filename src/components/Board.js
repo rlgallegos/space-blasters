@@ -4,42 +4,70 @@ import Alien from "./Alien";
 import Scoreboard from "./Scoreboard";
 import { useNavigate } from "react-router-dom";
 
-function Board({ isLoggedIn, currentUser }) {
+function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }) {
   const [alienArray, setAlienArray] = useState([]);
   const [xAxis, setxAxis] = useState(50);
-  const [alienRects, setAlienRects] = useState([]);
   const [score, setScore] = useState(0);
-  const [lives, setLives] = useState(3)
+  const [lives, setLives] = useState(10)
   const [level, setLevel] = useState(0)
   const [remainingAliens, setRemainingAliens] = useState(0)
-  const [collision, setCollision] = useState(false)
 
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const navigate = useNavigate();
 
-  /////////This is my code.
+  // useEffect(() => {
+  //   if (isLoggedIn === false) {
+  //     navigate("/");
+  //   }
+  // });
 
   useEffect(() => {
     if (!alienArray.length) {
-      console.log('reached this unfortunate point')
       setLevel(level + 1)
     }
   }, [remainingAliens])
-  
-
-
-
-  ///THIS IS ALERT LOGIC: DO NOT DELETE
-
-  // useEffect(() => {
-  //   if (!lives) {
-  //     alert("Game Over")
-  //     navigate(`/user/${currentUser['id']}`)
-  //   }
-  // }, [lives])
 
   useEffect(() => {
+    if (!lives) {
+      alert("Game Over")
+      gameover();
+    }
+  }, [lives])
 
+  function gameover() {
+
+    let updatedScore = 0;
+    if (currentUser.state.score < score) {
+      updatedScore = score
+    } else {
+      updatedScore = currentUser.state.score
+    }
+
+    fetch(`http://localhost:3000/users/${currentUser["id"]}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        state: {
+          score: updatedScore,
+          level: level
+        }
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      //update central data array
+      let newArray = userData.filter(user => user.id !== currentUser.id)
+      let updatedArray = [...newArray, data]
+      setUserData(updatedArray)
+      //update current user
+      setCurrentUser(data)
+      navigate(`/user/${currentUser.id}`)
+    })
+  }
+
+  useEffect(() => {
     setRemainingAliens(level * 2)
 
     let alienY = [];
@@ -62,7 +90,7 @@ function Board({ isLoggedIn, currentUser }) {
   
     let uniqueId = -1;
     const newArray = coordinates.map(each => {
-      console.log('reached this horrible point')
+
       uniqueId++
       let alienImageIndex = Math.floor(Math.random() * (5 - 0) ) + 0
       return <Alien id={uniqueId} key={uniqueId} coordinates={each} alienImageIndex={alienImageIndex} alienImageArray={alienImageArray} lives={lives} setLives={setLives} />
@@ -70,20 +98,6 @@ function Board({ isLoggedIn, currentUser }) {
     setAlienArray(newArray)
   }, [level])
 
-
-  // useEffect(() => {
-
-  //   let aliens = document.getElementsByClassName("aliens");
-
-  //   if (aliens) {
-  //     let alienArray = Array.from(aliens);
-  //     let rectArray = [];
-  //     alienArray.forEach((alien) => {
-  //       rectArray.push(alien.getBoundingClientRect());
-  //       setAlienRects(rectArray);
-  //     });
-  //   }
-  // }, [alienArray]);
 
   function createBullet() {
     //element creation
@@ -109,13 +123,12 @@ function Board({ isLoggedIn, currentUser }) {
 
       let rectArray = [];
       let aliens = document.getElementsByClassName("aliens");
+
       if (aliens) {
         let newAlienArray = Array.from(aliens);
         
           newAlienArray.forEach((alien) => {
-          
           rectArray.push(alien.getBoundingClientRect());
-          setAlienRects(rectArray);
         });
       }
 
@@ -134,24 +147,22 @@ function Board({ isLoggedIn, currentUser }) {
       for (let i = 0; i < rectArray.length; i++) {
         if ( (rectArray[i].bottom >= bulletRect.top + 40) && ((rectArray[i].left + 50 )<= bulletRect.left) && ((rectArray[i].right - 50) >= bulletRect.right) ) {
 
-          console.log('checkpoint reached')
           //delete bullet
           clearInterval(interval);
           gameboard.removeChild(newDiv);
 
-          //delete alien
-          const updatedArray = alienArray.filter(
-            (each) => each.props.id !== alienArray[i].props.id
-          );
+          //delete alien  
           setRemainingAliens((remainingAliens) => remainingAliens - 1)
+          setAlienArray((alienArray) => {
+            const updatedArray = alienArray.filter(
+              (each) => each.props.id !== alienArray[i].props.id
+            );
+            return updatedArray
+          });
 
-          setAlienArray(updatedArray);
           //update score
           setScore(score + 10); 
         }
-
-   
-
       }
     }, 0);
   }
@@ -180,8 +191,6 @@ function Board({ isLoggedIn, currentUser }) {
         return;
     }
   }
-
-  let alienList = [...alienArray]
 
   return (
     <>
@@ -215,15 +224,6 @@ function Board({ isLoggedIn, currentUser }) {
           lives={lives}
         />
         {alienArray}
-        {/* <img src="/Planet A.png"
-      position="absolute"
-      width='150px' />
-      <img src="/Planet B.png"
-      position="absolute"
-      width='100px' />
-      <img src="/Planet C.png"
-      position="absolute"
-      width='200px' /> */}
       </div>
     </>
   );

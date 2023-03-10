@@ -42,11 +42,13 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
+                userData={userData}
+                setUserData={setUserData}
               />
             }
           />
           {/* Finn's Id Page Component goes as the element in the route above */}
-          <Route path="/game" element={<Board isLoggedIn={isLoggedIn} currentUser={currentUser} />} />
+          <Route path="/game" element={<Board userData={userData} setUserData={setUserData} isLoggedIn={isLoggedIn} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
           {/* Nick's highetst game component will replace element "Board" above */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
