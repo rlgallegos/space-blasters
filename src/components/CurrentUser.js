@@ -1,9 +1,8 @@
 import React from "react";
 
 function CurrentUser({ currentUser }) {
-  const { username, email, state } = currentUser;
+  const {id, username, email, state } = currentUser;
 
-  //   const score = state.score;
   return (
     <div className="CurrentUserData">
       <h2 className="CurrentUserTitle">Current Player: {username}</h2>
@@ -24,13 +23,6 @@ function CurrentUser({ currentUser }) {
               <td>Current Level:{state["level"]}</td>
             ) : (
               <td>Current Level: 1</td>
-            )}
-          </tr>
-          <tr>
-            {currentUser.state["livesRemaining"] ? (
-              <td>Lives Remaining: {state["livesRemaining"]}</td>
-            ) : (
-              <td>Lives Remaining: 3</td>
             )}
           </tr>
         </thead>

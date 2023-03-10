@@ -2,12 +2,13 @@ import React from "react";
 import Score from "./Score";
 
 function LeaderBoard({ userData }) {
-  const orderedScore = userData.sort(
+
+  const malleableData = [...userData]
+  const orderedScore = malleableData.sort(
     (a, b) => a.state["score"] - b.state["score"]
   );
 
   orderedScore.reverse();
-  // console.log(orderedScore);
   const completescore = orderedScore.slice(0, 10);
 
   return (

@@ -41,7 +41,7 @@ function ContinueMenu({ currentUser, setCurrentUser, setUserData, userData }) {
     const restartedUser = {
       state: {
         score: 0,
-        livesRemaining: 3,
+        livesRemaining: 10,
         level: 0,
       },
     };

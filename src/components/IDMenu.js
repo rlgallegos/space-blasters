@@ -4,8 +4,8 @@ import ContinueMenu from "./ContinueMenu";
 import CurrentUser from "./CurrentUser";
 import LeaderBoard from "./Leaderboard";
 
-function IDMenu({ isLoggedIn, currentUser, setCurrentUser }) {
-  const [userData, setUserData] = useState([]);
+function IDMenu({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }) {
+  // const [userData, setUserData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,17 +14,11 @@ function IDMenu({ isLoggedIn, currentUser, setCurrentUser }) {
     }
   });
 
-  useEffect(() => {
-    fetch("http://localhost:3000/users")
-      .then((res) => res.json())
-      .then((data) => setUserData(data));
-  }, []);
-
   return (
     <div>
       <div className="starsHome"></div>
       <div className="twinklingHome"> </div>
-      <LeaderBoard key={userData.id} userData={userData} />
+      <LeaderBoard userData={userData} />
 
       {isLoggedIn ? (
         <CurrentUser userData={userData} currentUser={currentUser} />

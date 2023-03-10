@@ -3,7 +3,6 @@ import React, {useState, useEffect} from "react"
 
 function Alien({ alienImageIndex, lives, setLives, alienImageArray, id, coordinates}) {
     let [nextBullet, setNextBullet] = useState(0)
-    console.log(coordinates)
 
     const alienBoard = document.getElementsByClassName("gameboard")[0]
     const boardRect = alienBoard.getBoundingClientRect()
@@ -81,7 +80,7 @@ function Alien({ alienImageIndex, lives, setLives, alienImageArray, id, coordina
         className='aliens'
         id={id}
         >
-            <img src={alienImageArray[alienImageIndex]} alt='Enemy Ship' className="alien-image" />
+            <img id="" src={alienImageArray[alienImageIndex]} alt='Enemy Ship' className="alien-image" />
         </div>
     )
 }
