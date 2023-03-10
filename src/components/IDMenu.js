@@ -5,7 +5,6 @@ import CurrentUser from "./CurrentUser";
 import LeaderBoard from "./Leaderboard";
 
 function IDMenu({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }) {
-  // const [userData, setUserData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +19,7 @@ function IDMenu({userData, setUserData, isLoggedIn, currentUser, setCurrentUser 
       <div className="twinklingHome"> </div>
       <LeaderBoard userData={userData} />
 
-      {isLoggedIn ? (
+      {isLoggedIn  ? (
         <CurrentUser userData={userData} currentUser={currentUser} />
       ) : null}
       <ContinueMenu
