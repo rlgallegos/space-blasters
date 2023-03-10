@@ -12,7 +12,7 @@ function LeaderBoard({ userData }) {
   const completescore = orderedScore.slice(0, 10);
 
   return (
-    <div>
+    <div id="leaderboard-container">
       <table className="LeaderBoardTable">
         <thead>
           <tr>

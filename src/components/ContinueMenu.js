@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useState} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function ContinueMenu({ currentUser, setCurrentUser, setUserData, userData }) {
   const params = useParams();
-  // console.log(currentUser["id"]);
-  //console.log(setCurrentUser);
-
+  const [chosenPlayer, setChosenPlayer] = useState('player.png')
   const navigate = useNavigate();
+
+  function handleChoosePlayer(e) {
+    setChosenPlayer(e.target.name)
+  }
+
+
   return (
-    <div>
+    <>
+    <div id="two-player-container">
+      <div onClick={handleChoosePlayer} className="player-container">
+        <img name="player1" className="player-image" src="/player.png"></img>
+      </div>
+      <div onClick={handleChoosePlayer} className="player-container">
+        <img name="player2" className="player-image" src="/player2.png"></img>
+      </div>
+    </div>
+
+
+    <div id="continue-table-div">
       <table className="ContinueMenu">
         <thead>
           <tr>
             <td>
-              <button onClick={() => navigate("/game")} className="MenuButton">
+              <button onClick={handleContinueClick} className="MenuButton">
                 Continue
               </button>
             </td>
@@ -35,7 +50,13 @@ function ContinueMenu({ currentUser, setCurrentUser, setUserData, userData }) {
         </thead>
       </table>
     </div>
+    </>
   );
+
+  function handleContinueClick() {
+    //navigate('/componentB',{state:{id:1,name:'sabaoon'}});
+    navigate("/game", {state: {player: chosenPlayer}})
+  }
 
   function handleRestartClick() {
     const restartedUser = {

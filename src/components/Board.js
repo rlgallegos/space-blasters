@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import Alien from "./Alien";
 import Scoreboard from "./Scoreboard";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }) {
   const [alienArray, setAlienArray] = useState([]);
@@ -14,6 +14,17 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
 
   const gameboard = document.getElementsByClassName("gameboard")[0];
   const navigate = useNavigate();
+
+  //get player ship selection
+  const location = useLocation();
+  let shipPath = ''
+  if (location.state.player === 'player2'){
+    shipPath = '/player2.png'
+  } else {
+    shipPath = '/player.png'
+  }
+
+  console.log(location.state.player)
 
   useEffect(() => {
     if (isLoggedIn === false) {
@@ -223,7 +234,7 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
           width: "12vw",
         }}
       >
-        <img id="player-image" src="/player.png" alt="The Ship" />
+        <img id="player-image" src={shipPath} alt="The Ship" />
       </div>
       <div className="stars"></div>
       <div className="twinkling">
