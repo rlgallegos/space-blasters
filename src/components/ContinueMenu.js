@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function ContinueMenu({
@@ -9,10 +9,12 @@ function ContinueMenu({
   music,
 }) {
   const params = useParams();
-  // console.log(currentUser["id"]);
-  //console.log(setCurrentUser);
-
+  const [chosenPlayer, setChosenPlayer] = useState("player.png");
   const navigate = useNavigate();
+
+  function handleChoosePlayer(e) {
+    setChosenPlayer(e.target.name);
+  }
 
   function handlePlayClickSound() {
     music.pause();
@@ -24,34 +26,50 @@ function ContinueMenu({
   }
 
   return (
-    <div>
-      <table className="ContinueMenu">
-        <thead>
-          <tr>
-            <td>
-              <button onClick={handlePlayClickSound} className="MenuButton">
-                Continue
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button onClick={handleRestartClick} className="MenuButton">
-                Reset State
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button onClick={handleDeleteClick} className="MenuButton">
-                Delete User
-              </button>
-            </td>
-          </tr>
-        </thead>
-      </table>
-    </div>
+    <>
+      <div id="two-player-container">
+        <div onClick={handleChoosePlayer} className="player-container">
+          <img name="player1" className="player-image" src="/player.png"></img>
+        </div>
+        <div onClick={handleChoosePlayer} className="player-container">
+          <img name="player2" className="player-image" src="/player2.png"></img>
+        </div>
+      </div>
+
+      <div id="continue-table-div">
+        <table className="ContinueMenu">
+          <thead>
+            <tr>
+              <td>
+                <button onClick={handleContinueClick} className="MenuButton">
+                  Continue
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button onClick={handleRestartClick} className="MenuButton">
+                  Reset State
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button onClick={handleDeleteClick} className="MenuButton">
+                  Delete User
+                </button>
+              </td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </>
   );
+
+  function handleContinueClick() {
+    //navigate('/componentB',{state:{id:1,name:'sabaoon'}});
+    navigate("/game", { state: { player: chosenPlayer } });
+  }
 
   function handleRestartClick() {
     handleResetClick();
