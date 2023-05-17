@@ -10,11 +10,14 @@ const middlewares = jsonServer.defaults();
 const serverPort = 9000;
 const appPort = 8000;
 
+// app.use(express.static('public'));
+// app.use(express.json())
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'build')));
 
-// server.use(middlewares);
-// server.use(router);
+server.use(middlewares);
+server.use(router);
 
 server.listen(serverPort, () => {
   console.log(`JSON Server is running on port ${serverPort}`);
