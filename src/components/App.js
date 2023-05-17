@@ -17,7 +17,7 @@ function App() {
   // music.load();
 
   useEffect(() => {
-    fetch("http://localhost:3000/users")
+    fetch("http://localhost:10000/users")
       .then((res) => res.json())
       .then((data) => {
         setUserData(data);
