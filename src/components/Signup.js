@@ -57,7 +57,7 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
     bcrypt
       .hash(formData.hashPass, 5)
       .then((hash) => {
-        fetch("http://localhost:3000/users", {
+        fetch("/db.json", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -66,7 +66,7 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
         })
           .then((res) => res.json())
           .then((data) => {
-            setUserData([...userData, data]);
+            setUserData([...userData, data.users]);
             setIsLoggedIn(true);
             setFormData(defaultFormData);
             navigate("/");
@@ -76,8 +76,6 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        //HERE GOES ALL LOGIC THAT MAY UPDATE THE DOM OR PERHAPS
-        //PASS TO THE "/" ROUTE
       })
       .catch((err) => {
         console.log(err);
