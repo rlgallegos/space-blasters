@@ -13,8 +13,8 @@ const appPort = 8000;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'build')));
 
-server.use(middlewares);
-server.use(router);
+// server.use(middlewares);
+// server.use(router);
 
 server.listen(serverPort, () => {
   console.log(`JSON Server is running on port ${serverPort}`);
