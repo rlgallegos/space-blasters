@@ -173,16 +173,6 @@
         "livesRemaining": ""
       },
       "id": 22
-    },
-    {
-      "username": "Bobby4",
-      "email": "legos@gmail.com",
-      "hashPass": "$2a$05$ghFUPtoB.FE/1azmGEaHNe.hTpdo468jOdxWO.ecqRNXqK6Jqpucm",
-      "state": {
-        "score": 120,
-        "level": 6
-      },
-      "id": 23
     }
   ]
 }
