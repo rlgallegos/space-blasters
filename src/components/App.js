@@ -17,10 +17,12 @@ function App() {
   // music.load();
 
   useEffect(() => {
-    fetch("/db.json")
+    fetch("http://localhost:3000/users")
       .then((res) => res.json())
       .then((data) => {
-        setUserData(data.users);
+        console.log('GET from main users route')
+        console.log(data)
+        setUserData(data);
       });
   }, []);
 

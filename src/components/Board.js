@@ -252,6 +252,7 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
         />
         {alienArray}
       </div>
+      <a className="attribution" href="https://www.freepik.com/free-vector/alien-spaceship-ufo-game-icons-vector-set_28641114.htm#page=2&query=alien%20sprite&position=0&from_view=keyword&track=ais">Images by upklyak</a> on Freepik
     </>
   );
 }

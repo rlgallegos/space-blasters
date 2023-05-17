@@ -57,7 +57,7 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
     bcrypt
       .hash(formData.hashPass, 5)
       .then((hash) => {
-        fetch("/db.json", {
+        fetch("http://localhost:3000/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -66,20 +66,13 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
         })
           .then((res) => res.json())
           .then((data) => {
-            setUserData([...userData, data.users]);
+            setUserData([...userData, data]);
             setIsLoggedIn(true);
             setFormData(defaultFormData);
             navigate("/");
             alert("Account Created! Please Login");
           });
       })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   function handlePlayClickSound() {

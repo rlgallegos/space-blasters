@@ -16,8 +16,6 @@ function Login({ userData, isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     }
   }
 
-  console.log(isLoggedIn);
-
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -27,6 +25,7 @@ function Login({ userData, isLoggedIn, setIsLoggedIn, setCurrentUser }) {
       alert("Username Not Found");
       setUsername("");
       setPassword("");
+      return
     }
 
     //validate password and set Login State
