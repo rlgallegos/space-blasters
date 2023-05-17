@@ -67,7 +67,6 @@ function ContinueMenu({
   );
 
   function handleContinueClick() {
-    //navigate('/componentB',{state:{id:1,name:'sabaoon'}});
     navigate("/game", { state: { player: chosenPlayer } });
   }
 
