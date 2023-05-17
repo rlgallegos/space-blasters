@@ -9,10 +9,13 @@ const middlewares = jsonServer.defaults();
 
 const port = process.env.PORT || 3000;
 
+// app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+
 app.use(express.static(path.join(__dirname, 'build')));
-
 server.use(middlewares);
 server.use(router);
 
