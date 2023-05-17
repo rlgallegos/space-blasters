@@ -18,17 +18,6 @@ function Login({ userData, isLoggedIn, setIsLoggedIn, setCurrentUser }) {
 
   console.log(isLoggedIn);
 
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   //validate username and get userinfo
-  //   const dbUser = userData.find((user) => user.username === username);
-  //   if (!dbUser) {
-  //     alert("Username Not Found");
-  //     setUsername("");
-  //     setPassword("");
-  //   }
-
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -54,9 +43,9 @@ function Login({ userData, isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     setCurrentUser(dbUser);
   }
 
-  function handlePlayClickSound() {
-    const clickSound = new Audio("./sparkle.wav").play();
-  }
+  // function handlePlayClickSound() {
+  //   const clickSound = new Audio("./sparkle.wav").play();
+  // }
 
   return (
     <form className="LoginForm" onSubmit={handleSubmit}>
@@ -74,7 +63,7 @@ function Login({ userData, isLoggedIn, setIsLoggedIn, setCurrentUser }) {
         type="password"
         placeholder="Enter Password"
       />
-      <input onClick={handlePlayClickSound} type="submit" value="Login" />
+      <input type="submit" value="Login" />
       <br></br>
     </form>
   );

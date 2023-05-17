@@ -20,7 +20,7 @@ function App() {
     fetch("http://localhost:8000/users")
       .then((res) => res.json())
       .then((data) => {
-        setUserData(data);
+        setUserData(data.users);
       });
   }, []);
 
