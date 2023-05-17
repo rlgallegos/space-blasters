@@ -17,7 +17,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm install && json-server --watch db.json && react-scripts build",
+    "build": "npm install && react-scripts build",
+    "start-server": "json-server --watch db.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
