@@ -272,6 +272,7 @@ input {
   display: flex;
   height: auto;
   width: 25vh;
+  cursor: pointer;
 }
 #two-player-container{
   display: flex;
@@ -288,6 +289,17 @@ input {
 }
 .player-container:active{
   transform: translateY(4px);
+}
+
+button {
+  cursor: pointer;
+}
+
+.attribution {
+  z-index: 999;
+  color: white;
+  position: absolute;
+  bottom: 10px;
 }
 
 @keyframes spring {

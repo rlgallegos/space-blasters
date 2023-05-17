@@ -100,16 +100,6 @@
       "id": 10
     },
     {
-      "username": "NickB",
-      "email": "nicholasrbrereton@gmail.com",
-      "hashPass": "$2a$05$5CVRJl0/Aj3WD5YIgld4ke6fq7e6rBwMhbMePKIMRVW5PNq3kmneq",
-      "state": {
-        "score": 490,
-        "level": 7
-      },
-      "id": 12
-    },
-    {
       "username": "eshwar",
       "email": "test@gmail.com",
       "hashPass": "$2a$05$M4q7fpHRdDAZhWQEKiVo8OZJBTzCHVjaGtZ4vY/0Lg5yH4EG3Bzv6",
@@ -130,16 +120,6 @@
         "livesRemaining": ""
       },
       "id": 15
-    },
-    {
-      "username": "El B-Town",
-      "email": "anything@gmail.com",
-      "hashPass": "$2a$05$NhPC2RBS7hZSXVvIXLdlaOtSisxv2PYpoSG8PzJ8zeSnAetV9Q/uK",
-      "state": {
-        "score": 810,
-        "level": 14
-      },
-      "id": 16
     },
     {
       "username": "Finn",
@@ -163,16 +143,6 @@
       "id": 18
     },
     {
-      "username": "Bobby2",
-      "email": "Bobby2@gmail.com",
-      "hashPass": "$2a$05$DUPJ1NzDdht2l.05XHHHuO7JHXgHaAzX0pqlwOwmX8h.BGn7upNny",
-      "state": {
-        "score": 330,
-        "level": 9
-      },
-      "id": 19
-    },
-    {
       "username": "Jack",
       "email": "sally@mail.com",
       "hashPass": "$2a$05$Cideu4UNDw4D5lXbxfTG8O1sM/PFGLQILp6rfmgby9.ny/kLR0e7i",
@@ -192,6 +162,17 @@
         "level": 7
       },
       "id": 21
+    },
+    {
+      "username": "Bobby3",
+      "email": "legos@gmail.com",
+      "hashPass": "$2a$05$XLQzraL0V56YaMND6syQXumdBqFol38L6sG9eEU1yQHtnsyqBaQaS",
+      "state": {
+        "score": "",
+        "level": "",
+        "livesRemaining": ""
+      },
+      "id": 22
     }
   ]
 }
