@@ -57,7 +57,7 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
     bcrypt
       .hash(formData.hashPass, 5)
       .then((hash) => {
-        fetch("http://localhost:3000/users", {
+        fetch("/api/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

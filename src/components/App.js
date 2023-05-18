@@ -17,7 +17,7 @@ function App() {
   // music.load();
 
   useEffect(() => {
-    fetch("/users/users")
+    fetch("/api/users")
       .then((res) => res.json())
       .then((data) => {
         console.log('GET from main users route')
