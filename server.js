@@ -36,7 +36,8 @@ server.use(router);
 const port = 3000;
 const appPort = 8000;
 
-app.use(express.static(path.join(buildPath)));
+// app.use(express.static(path.join(buildPath)));
+app.use(express.static(buildPath));
 app.use(express.json())
 
 app.get('/', (req, res) => {
