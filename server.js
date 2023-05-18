@@ -58,7 +58,7 @@ const db = require('./db.json');
 const apiRouter = jsonServer.router(db);
 
 // Mount the API router to '/api'
-apiServer.use('/users', apiRouter);
+app.use('/users', apiRouter);
 
 // Redirect all other routes to the React app
 app.get('/', (req, res) => {
