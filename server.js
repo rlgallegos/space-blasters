@@ -61,7 +61,7 @@ const apiRouter = jsonServer.router(db);
 apiServer.use('/users', apiRouter);
 
 // Redirect all other routes to the React app
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
