@@ -39,6 +39,7 @@ const appPort = 8000;
 // app.use(express.static(path.join(buildPath)));
 app.use(express.static(buildPath));
 app.use(express.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(buildPath, 'index.html'))
