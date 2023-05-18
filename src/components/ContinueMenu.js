@@ -79,7 +79,7 @@ function ContinueMenu({
         level: 0,
       },
     };
-    fetch(`http://localhost:3000/users/${params["id"]}`, {
+    fetch(`/api/users/${params["id"]}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +91,7 @@ function ContinueMenu({
   }
 
   function handleDeleteClick() {
-    fetch(`http://localhost:3000/users/${params["id"]}`, {
+    fetch(`/api/users/${params["id"]}`, {
       method: "DELETE",
     })
       .then(() => {
