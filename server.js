@@ -1,18 +1,36 @@
+
+// const express = require('express');
 // const jsonServer = require('json-server');
+// const path = require('path');
+// const cors = require('cors');
+
+// const app = express();
 // const server = jsonServer.create();
 // const router = jsonServer.router('db.json');
+
 // const middlewares = jsonServer.defaults();
+
+// const buildPath = path.join(__dirname, 'build')
+// console.log(buildPath)
 
 // server.use(middlewares);
 // server.use(router);
 
 // const port = 3000;
+// const appPort = 8000;
 
-// app.use(express.static(path.join(__dirname, 'build')));
+// // app.use(express.static(path.join(buildPath)));
+// app.use(express.static(buildPath));
+// app.use(express.json())
+// app.use(cors())
 
 // app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
+//   res.sendFile(path.join(buildPath, 'index.html'))
+// })
+
+// app.listen(appPort, () => {
+//   console.log(`Frontend Server is running on port ${appPort}`);
+// })
 
 // server.listen(port, () => {
 //   console.log(`JSON Server is running on port ${port}`);
@@ -24,32 +42,30 @@ const path = require('path');
 const cors = require('cors');
 
 const app = express();
-const server = jsonServer.create();
-const router = jsonServer.router('db.json');
-const middlewares = jsonServer.defaults();
+const port = process.env.PORT || 3000;
 
-const buildPath = path.join(__dirname, 'build')
-console.log(buildPath)
+// Serve the React app static files from the build directory
+app.use(express.static(path.join(__dirname, 'build')));
 
-server.use(middlewares);
-server.use(router);
+// Enable CORS for API routes
+app.use(cors());
 
-const port = 3000;
-const appPort = 8000;
+// Create an instance of JSON server
+const apiServer = jsonServer.create();
 
-// app.use(express.static(path.join(buildPath)));
-app.use(express.static(buildPath));
-app.use(express.json())
-app.use(cors())
+// Load the JSON file and create the router
+const db = require('./db.json');
+const apiRouter = jsonServer.router(db);
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'))
-})
+// Mount the API router to '/api'
+apiServer.use('/api', apiRouter);
 
-app.listen(appPort, () => {
-  console.log(`Frontend Server is running on port ${appPort}`);
-})
+// Redirect all other routes to the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
-server.listen(port, () => {
-  console.log(`JSON Server is running on port ${port}`);
+// Start the combined server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
