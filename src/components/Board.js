@@ -214,6 +214,10 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
     }
   }
 
+//   useEffect(() => {
+//     window.addEventListener('keydown', handleKeyDown)
+//   }, [])
+
   return (
     <>
       <div
