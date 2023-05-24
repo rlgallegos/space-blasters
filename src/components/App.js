@@ -1,5 +1,5 @@
 import "../App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Board from "./Board";
 import Intro from "./Intro";
 import PageNotFound from "./PageNotFound";
@@ -10,31 +10,19 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-  // const [music, setMusic] = useState(new Audio("./menuMusic.mp3"));
 
   const music = new Audio("./menuMusic.mp3");
-  const navigate = useNavigate();
-  // music.load();
 
   useEffect(() => {
     fetch("/api/users")
       .then((res) => res.json())
       .then((data) => {
-        console.log('GET from main users route')
-        console.log(data)
         setUserData(data);
       });
   }, []);
 
   function handlePlayMusic() {
     music.play();
-
-    // setMusic(music.pause());
-  }
-
-  function handlePauseMusic() {
-    music.pause();
-    navigate("/game");
   }
 
   return (
@@ -48,10 +36,8 @@ function App() {
                 setCurrentUser={setCurrentUser}
                 userData={userData}
                 setUserData={setUserData}
-                isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
                 handlePlayMusic={handlePlayMusic}
-                // handlePauseMusic={handlePauseMusic}
               />
             }
           />
@@ -63,14 +49,9 @@ function App() {
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
                 userData={userData}
-                setUserData={setUserData}
-                handlePlayMusic={handlePlayMusic}
-                handlePauseMusic={handlePauseMusic}
-                music={music}
               />
             }
           />
-          {/* Finn's Id Page Component goes as the element in the route above */}
           <Route
             path="/game"
             element={
@@ -83,7 +64,6 @@ function App() {
               />
             }
           />
-          {/* Nick's highetst game component will replace element "Board" above */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>

@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function ContinueMenu({
-  currentUser,
   setCurrentUser,
-  setUserData,
-  userData,
-  music,
 }) {
   const params = useParams();
   const [chosenPlayer, setChosenPlayer] = useState("player.png");
@@ -14,11 +10,6 @@ function ContinueMenu({
 
   function handleChoosePlayer(e) {
     setChosenPlayer(e.target.name);
-  }
-
-  function handlePlayClickSound() {
-    music.pause();
-    navigate("/game");
   }
 
   function handleResetClick() {
@@ -29,10 +20,10 @@ function ContinueMenu({
     <>
       <div id="two-player-container">
         <div onClick={handleChoosePlayer} className="player-container">
-          <img name="player1" className="player-image" src="/player.png"></img>
+          <img name="player1" className="player-image" src="/player.png" alt="Ship Choice A"></img>
         </div>
         <div onClick={handleChoosePlayer} className="player-container">
-          <img name="player2" className="player-image" src="/player2.png"></img>
+          <img name="player2" className="player-image" src="/player2.png" alt="Ship Choice B"></img>
         </div>
       </div>
 
@@ -86,22 +77,21 @@ function ContinueMenu({
       },
       body: JSON.stringify(restartedUser),
     })
-      .then((res) => res.json())
-      .then((restartedUser) => setCurrentUser(restartedUser));
+    .then((res) => res.json())
+    .then((restartedUser) => setCurrentUser(restartedUser));
   }
 
   function handleDeleteClick() {
     fetch(`/api/users/${params["id"]}`, {
-      method: "DELETE",
+        method: "DELETE",
     })
-      .then(() => {
-        // const newArray = userData.filter((user) => currentUser.id !== user.id);
+    .then(() => {
         navigate("/");
         window.location.reload();
-      })
-      .catch((error) => {
+    })
+        .catch((error) => {
         console.error("Error deleting user:", error);
-      });
+    });
   }
 }
 export default ContinueMenu;

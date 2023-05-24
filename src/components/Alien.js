@@ -9,7 +9,7 @@ function Alien({ alienImageIndex, lives, setLives, alienImageArray, id, coordina
     let ship = document.getElementsByClassName('ship')[0]
 
     function playAlienLaser(){
-        const Alienlaser = new Audio("./shoot02wav-14562.mp3").play()
+        new Audio("./shoot02wav-14562.mp3").play()
     }
   
   function createAllienBullet(){
@@ -37,7 +37,7 @@ function Alien({ alienImageIndex, lives, setLives, alienImageArray, id, coordina
     }, [nextBullet])
 
     function play(){
-        const audio = new Audio("./bad-explosion-6855 (1).mp3").play()
+        new Audio("./bad-explosion-6855 (1).mp3").play()
     }
 
     function sendAllienBullet(alienDiv){
