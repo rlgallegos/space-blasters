@@ -6,12 +6,13 @@ import PageNotFound from "./PageNotFound";
 import { useState, useEffect } from "react";
 import IDMenu from "./IDMenu";
 
+const music = new Audio("./menuMusic.mp3");
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-
-  const music = new Audio("./menuMusic.mp3");
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     fetch("/api/users")
@@ -23,7 +24,14 @@ function App() {
   }, []);
 
   function handlePlayMusic() {
-    music.play();
+    console.log(isPlaying)
+    if (!isPlaying){
+        setIsPlaying(isPlaying => !isPlaying)
+        music.play()
+    } else {
+        setIsPlaying(isPlaying => !isPlaying)
+        music.pause()
+    }
   }
 
   return (
@@ -39,6 +47,7 @@ function App() {
                 setUserData={setUserData}
                 setIsLoggedIn={setIsLoggedIn}
                 handlePlayMusic={handlePlayMusic}
+                music={music}
               />
             }
           />
@@ -50,6 +59,8 @@ function App() {
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
                 userData={userData}
+                handlePlayMusic={handlePlayMusic}
+                music={music}
               />
             }
           />
@@ -69,6 +80,7 @@ function App() {
         </Routes>
       </main>
     </div>
+    
   );
 }
 

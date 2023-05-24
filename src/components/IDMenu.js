@@ -9,6 +9,8 @@ function IDMenu({
   isLoggedIn,
   currentUser,
   setCurrentUser,
+  handlePlayMusic,
+  music
 }) {
 
   const navigate = useNavigate();
@@ -31,7 +33,11 @@ function IDMenu({
       <ContinueMenu
         setCurrentUser={setCurrentUser}
       />
+        <button onClick={handlePlayMusic} className="play-music-button-general">
+            {music.paused ? "Play Music" : "Pause Music"}
+        </button>
     </div>
+
   );
 }
 
