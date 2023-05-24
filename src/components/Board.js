@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 import Alien from "./Alien";
 import Scoreboard from "./Scoreboard";
 import { useNavigate, useLocation } from "react-router-dom";
 
-function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }) {
+function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }) { 
+  const shipRef = useRef(null)
+
   const [alienArray, setAlienArray] = useState([]);
   const [xAxis, setxAxis] = useState(50);
   const [score, setScore] = useState(0);
@@ -190,21 +192,20 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
 
   //controls logic
   function handleKeyDown(e) {
+    let ship = shipRef.current
+    // if (!ship) return;
+
     let shipOffsetRight =
-      window.innerWidth - e.target.offsetLeft - e.target.offsetWidth;
+      window.innerWidth - ship.offsetLeft - ship.offsetWidth;
     let gameboardOffsetRight =
       window.innerWidth - gameboard.offsetLeft - gameboard.offsetWidth;
     switch (e.key) {
-      case "a":
-        if (e.target.offsetLeft >= gameboard.offsetLeft) {
-          setxAxis(xAxis - 2);
-        }
-        break;
-      case "d":
-        if (shipOffsetRight >= gameboardOffsetRight) {
-          setxAxis(xAxis + 2);
-        }
-        break;
+        case "a":
+            setxAxis((prevXAxis) => (ship.offsetLeft > gameboard.offsetLeft ? prevXAxis - 2 : prevXAxis));
+            break;
+          case "d":
+            setxAxis((prevXAxis) => (shipOffsetRight >= gameboardOffsetRight ? prevXAxis + 2 : prevXAxis));
+            break;
       case " ":
         createBullet();
         playLaser();
@@ -214,15 +215,19 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
     }
   }
 
-//   useEffect(() => {
-//     window.addEventListener('keydown', handleKeyDown)
-//   }, [])
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+  }, [gameboard, xAxis])
 
   return (
     <>
       <div
         className="ship"
-        onKeyDown={handleKeyDown}
+        ref={shipRef}
+        // onKeyDown={handleKeyDown}
         tabIndex="0"
         style={{
           boxSizing: "border-box",

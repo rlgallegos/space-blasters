@@ -15,6 +15,42 @@ function ContinueMenu({
   function handleResetClick() {
     new Audio("./resetState.wav").play();
   }
+  function handleContinueClick() {
+    navigate("/game", { state: { player: chosenPlayer } });
+  }
+
+  function handleRestartClick() {
+    handleResetClick();
+    const restartedUser = {
+      state: {
+        score: 0,
+        livesRemaining: 10,
+        level: 0,
+      },
+    };
+    fetch(`/api/users/${params["id"]}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(restartedUser),
+    })
+    .then((res) => res.json())
+    .then((restartedUser) => setCurrentUser(restartedUser));
+  }
+
+  function handleDeleteClick() {
+    fetch(`/api/users/${params["id"]}`, {
+        method: "DELETE",
+    })
+    .then(() => {
+        navigate("/");
+        window.location.reload();
+    })
+        .catch((error) => {
+        console.error("Error deleting user:", error);
+    });
+  }
 
   return (
     <>
@@ -52,46 +88,16 @@ function ContinueMenu({
               </td>
             </tr>
           </thead>
+            <div className="controls-container">
+                <h2 className="controls-title">Controls</h2>
+                <h4 className="controls-text">Move Left: "a"</h4>
+                <h4 className="controls-text">Move Right: "d"</h4>
+                <h4 className="controls-text">Fire Laser: [spacebar]</h4>
+            </div>
         </table>
+
       </div>
     </>
   );
-
-  function handleContinueClick() {
-    navigate("/game", { state: { player: chosenPlayer } });
-  }
-
-  function handleRestartClick() {
-    handleResetClick();
-    const restartedUser = {
-      state: {
-        score: 0,
-        livesRemaining: 10,
-        level: 0,
-      },
-    };
-    fetch(`/api/users/${params["id"]}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(restartedUser),
-    })
-    .then((res) => res.json())
-    .then((restartedUser) => setCurrentUser(restartedUser));
-  }
-
-  function handleDeleteClick() {
-    fetch(`/api/users/${params["id"]}`, {
-        method: "DELETE",
-    })
-    .then(() => {
-        navigate("/");
-        window.location.reload();
-    })
-        .catch((error) => {
-        console.error("Error deleting user:", error);
-    });
-  }
 }
 export default ContinueMenu;

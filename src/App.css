@@ -302,6 +302,21 @@ button {
   bottom: 10px;
 }
 
+.controls-text {
+    color: white;
+    margin: 10px;
+}
+.controls-container {
+    color: white;
+    border-color: white;
+    border-style:double;
+    padding: 20px;
+}
+.controls-title {
+    margin: 5px;
+    font-style: italic;
+}
+
 @keyframes spring {
   15% {
     -webkit-transform-origin: center center;
