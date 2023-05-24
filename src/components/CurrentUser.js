@@ -1,7 +1,7 @@
 import React from "react";
 
 function CurrentUser({ currentUser }) {
-  const {id, username, email, state } = currentUser;
+  const { username, email, state } = currentUser;
 
   return (
     <div className="CurrentUserData">

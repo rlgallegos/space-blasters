@@ -4,15 +4,10 @@ import Login from "./Login";
 function Intro({
   setUserData,
   userData,
-  isLoggedIn,
   setIsLoggedIn,
   setCurrentUser,
   handlePlayMusic,
-  handlePauseMusic,
 }) {
-  if (isLoggedIn) {
-    //go to "/user/:id"
-  }
 
   return (
     <>
@@ -21,7 +16,6 @@ function Intro({
         <Login
           setCurrentUser={setCurrentUser}
           userData={userData}
-          isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
         />
         <Signup

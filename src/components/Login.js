@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login({ userData, isLoggedIn, setIsLoggedIn, setCurrentUser }) {
+function Login({ userData, setIsLoggedIn, setCurrentUser }) {
   const bcrypt = require("bcryptjs");
   const navigate = useNavigate();
 
@@ -41,10 +41,6 @@ function Login({ userData, isLoggedIn, setIsLoggedIn, setCurrentUser }) {
     });
     setCurrentUser(dbUser);
   }
-
-  // function handlePlayClickSound() {
-  //   const clickSound = new Audio("./sparkle.wav").play();
-  // }
 
   return (
     <form className="LoginForm" onSubmit={handleSubmit}>

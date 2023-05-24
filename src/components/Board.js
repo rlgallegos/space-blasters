@@ -24,8 +24,6 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
     shipPath = '/player.png'
   }
 
-  console.log(location.state.player)
-
   useEffect(() => {
     if (isLoggedIn === false) {
       navigate("/");
@@ -144,7 +142,7 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
       }
 
       function playAlienExplosion(){
-        const alienExplosion = new Audio("./hq-explosion-6288.mp3").play()
+        new Audio("./hq-explosion-6288.mp3").play()
     }
 
       const bulletRect = newDiv.getBoundingClientRect();
@@ -168,7 +166,6 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
             gameboard.removeChild(newDiv);
           }
           
-
           //delete alien  
           setRemainingAliens((remainingAliens) => remainingAliens - 1)
           setAlienArray((alienArray) => {
@@ -179,8 +176,6 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
               return alienArray
             }
           });
-
-          // setAlienArray(updatedArray);
           playAlienExplosion()
           //update score
           setScore(score + 10); 
@@ -190,7 +185,7 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
   }
 
   function playLaser(){
-    const laser = new Audio("./blaster-2-81267.mp3").play()
+    new Audio("./blaster-2-81267.mp3").play()
 }
 
   //controls logic
@@ -238,10 +233,9 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
       </div>
       <div className="stars"></div>
       <div className="twinkling">
-        <img id="PlanetA" src="/PlanetA.png" />
-        <img id="PlanetB" src="/PlanetB.png" />
-        <img id="PlanetC" src="/PlanetC.png" />
-        {/* <img id="DeathStar" src="/DeathStar.png" /> */}
+        <img id="PlanetA" src="/PlanetA.png" alt="Alien Planet A"/>
+        <img id="PlanetB" src="/PlanetB.png" alt="Alien Planet B"/>
+        <img id="PlanetC" src="/PlanetC.png" alt="Alien Planet C"/>
       </div>
       <div className="gameboard">
         <Scoreboard
