@@ -7,6 +7,7 @@ function Intro({
   setIsLoggedIn,
   setCurrentUser,
   handlePlayMusic,
+  music
 }) {
 
   return (
@@ -24,7 +25,7 @@ function Intro({
           userData={userData}
         />
         <button onClick={handlePlayMusic} className="playMusicButton">
-          Play Music
+          {music.paused ? "Play Music" : "Pause Music"}
         </button>
         <h1 className="MainTitle">SPACE BLASTERS</h1>
       </div>
