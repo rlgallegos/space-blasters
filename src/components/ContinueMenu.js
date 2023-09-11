@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-const BACKEND_URL = process.env.API_URL
+const BACKEND_URL = process.env.REACT_APP_API_URL
 
 function ContinueMenu({
   setCurrentUser,

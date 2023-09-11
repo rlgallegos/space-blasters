@@ -4,7 +4,7 @@ import Alien from "./Alien";
 import Scoreboard from "./Scoreboard";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const BACKEND_URL = process.env.API_URL
+const BACKEND_URL = process.env.REACT_APP_API_URL
 
 function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }) { 
   const shipRef = useRef(null)
