@@ -8,7 +8,7 @@ import IDMenu from "./IDMenu";
 
 const music = new Audio("./menuMusic.mp3");
 
-const BACKEND_URL = process.env.BACKEND_URL
+const BACKEND_URL = process.env.API_URL
 
 
 function App() {
