@@ -1,1 +1,1 @@
-web: gunicorn --chdir server app:app
+web: node server.js
