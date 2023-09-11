@@ -56,6 +56,7 @@ function Signup({ setIsLoggedIn, userData, setUserData }) {
     }
 
     //encrypt password
+    console.log("API_URL:", process.env.API_URL);
     bcrypt
       .hash(formData.hashPass, 5)
       .then((hash) => {
