@@ -8,6 +8,9 @@ import IDMenu from "./IDMenu";
 
 const music = new Audio("./menuMusic.mp3");
 
+const BACKEND_URL = process.env.BACKEND_URL
+
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState([]);
@@ -15,7 +18,7 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    fetch("/api/users")
+    fetch(`${BACKEND_URL}/api/users`)
       .then((res) => res.json())
       .then((data) => {
         setUserData(data);
