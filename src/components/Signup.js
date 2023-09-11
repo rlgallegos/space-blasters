@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const BACKEND_URL = process.env.BACKEND_URL
+
 function Signup({ setIsLoggedIn, userData, setUserData }) {
   //import encryption library
   const bcrypt = require("bcryptjs");
