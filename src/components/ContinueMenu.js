@@ -28,7 +28,7 @@ function ContinueMenu({
         level: 0,
       },
     };
-    fetch(`/api/users/${params["id"]}`, {
+    fetch(`${BACKEND_URL}/api/users/${params["id"]}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ function ContinueMenu({
   }
 
   function handleDeleteClick() {
-    fetch(`/api/users/${params["id"]}`, {
+    fetch(`${BACKEND_URL}/api/users/${params["id"]}`, {
         method: "DELETE",
     })
     .then(() => {

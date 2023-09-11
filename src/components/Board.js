@@ -54,7 +54,7 @@ function Board({userData, setUserData, isLoggedIn, currentUser, setCurrentUser }
       updatedScore = currentUser.state.score
     }
 
-    fetch(`/api/users/${currentUser["id"]}`, {
+    fetch(`${BACKEND_URL}/api/users/${currentUser["id"]}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
