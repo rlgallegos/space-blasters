@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BACKEND_URL = process.env.API_URL
+const BACKEND_URL = process.env.API_URL;
 
 function Signup({ setIsLoggedIn, userData, setUserData }) {
   //import encryption library
