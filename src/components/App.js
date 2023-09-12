@@ -22,12 +22,10 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setUserData(data);
-        console.log(data)
       });
   }, []);
 
   function handlePlayMusic() {
-    console.log(isPlaying)
     if (!isPlaying){
         setIsPlaying(isPlaying => !isPlaying)
         music.play()
