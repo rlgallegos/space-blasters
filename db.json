@@ -1,189 +1,169 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "user1",
-      "email": "user1@gmail.com",
-      "hashPass": "1h2dnlsidfnlsdinflsdkfnln",
-      "state": {
-        "score": "11",
-        "level": "1",
-        "livesRemaining": 10
+        "id": 1,
+        "username": "NinjaWarrior23",
+        "email": "ninja23@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnln",
+        "state": {
+          "score": "25",
+          "level": "3",
+          "livesRemaining": 7
+        }
+      },
+      {
+        "id": 2,
+        "username": "MasterGamer42",
+        "email": "master42@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnlo",
+        "state": {
+          "score": "30",
+          "level": "2",
+          "livesRemaining": 6
+        }
+      },
+      {
+        "id": 3,
+        "username": "PixelWizard",
+        "email": "pixelwizard@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnlp",
+        "state": {
+          "score": "42",
+          "level": "4",
+          "livesRemaining": 5
+        }
+      },
+      {
+        "id": 4,
+        "username": "RetroGamer88",
+        "email": "retro88@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnlq",
+        "state": {
+          "score": "50",
+          "level": "5",
+          "livesRemaining": 4
+        }
+      },
+      {
+        "id": 5,
+        "username": "SpeedyGonzales",
+        "email": "speedy@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnlr",
+        "state": {
+          "score": "35",
+          "level": "2",
+          "livesRemaining": 6
+        }
+      },
+      {
+        "id": 6,
+        "username": "EpicGamerX",
+        "email": "epicx@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnls",
+        "state": {
+          "score": "48",
+          "level": "4",
+          "livesRemaining": 5
+        }
+      },
+      {
+        "id": 7,
+        "username": "CyberPunk33",
+        "email": "cyber33@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnlt",
+        "state": {
+          "score": "55",
+          "level": "5",
+          "livesRemaining": 4
+        }
+      },
+      {
+        "id": 8,
+        "username": "ArcadeHero",
+        "email": "arcade@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnlu",
+        "state": {
+          "score": "28",
+          "level": "2",
+          "livesRemaining": 6
+        }
+      },
+      {
+        "id": 9,
+        "username": "MysticQuester",
+        "email": "mystic@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnlv",
+        "state": {
+          "score": "22",
+          "level": "1",
+          "livesRemaining": 7
+        }
+      },
+      {
+        "id": 10,
+        "username": "BattleMage",
+        "email": "battle@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnlw",
+        "state": {
+          "score": "38",
+          "level": "3",
+          "livesRemaining": 5
+        }
+      },
+      {
+        "id": 11,
+        "username": "GalacticSavior",
+        "email": "galactic@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnlx",
+        "state": {
+          "score": "44",
+          "level": "4",
+          "livesRemaining": 5
+        }
+      },
+      {
+        "id": 12,
+        "username": "DragonSlayer99",
+        "email": "dragon99@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnly",
+        "state": {
+          "score": "60",
+          "level": "5",
+          "livesRemaining": 4
+        }
+      },
+      {
+        "id": 13,
+        "username": "SneakyNinja77",
+        "email": "sneaky77@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnlz",
+        "state": {
+          "score": "32",
+          "level": "3",
+          "livesRemaining": 6
+        }
+      },
+      {
+        "id": 14,
+        "username": "SpaceExplorerX",
+        "email": "spaceexplorer@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnl0",
+        "state": {
+          "score": "27",
+          "level": "2",
+          "livesRemaining": 6
+        }
+      },
+      {
+        "id": 15,
+        "username": "MegaGamer99",
+        "email": "mega99@gmail.com",
+        "hashPass": "1h2dnlsidfnlsdinflsdkfnl3",
+        "state": {
+          "score": "52",
+          "level": "5",
+          "livesRemaining": 4
+        }
       }
-    },
-    {
-      "id": 2,
-      "username": "user2",
-      "email": "user2@gmail.com",
-      "hashPass": "1h2dnlsidfnlsdinflsdkfnlo",
-      "state": {
-        "score": "2",
-        "level": "",
-        "livesRemaining": 10
-      }
-    },
-    {
-      "id": 3,
-      "username": "Sometimes",
-      "email": "user3@gmail.com",
-      "hashPass": "1h2dnlsidfnlsdinflsdkfnlp",
-      "state": {
-        "score": "44",
-        "level": "",
-        "livesRemaining": 10
-      }
-    },
-    {
-      "id": 5,
-      "username": "Yichang",
-      "email": "user4@gmail.com",
-      "hashPass": "1h2dnlsidfnlsdinflsdkfnlq",
-      "state": {
-        "score": "5",
-        "level": "",
-        "livesRemaining": 10
-      }
-    },
-    {
-      "username": "yomotha",
-      "email": "newEmail1",
-      "hashPass": "Pass1",
-      "state": {
-        "score": "6",
-        "level": "",
-        "livesRemaining": 10
-      },
-      "id": 6
-    },
-    {
-      "username": "jonny",
-      "email": "newEmail2",
-      "hashPass": "EasyPassword",
-      "state": {
-        "score": "7",
-        "level": "",
-        "livesRemaining": 10
-      },
-      "id": 7
-    },
-    {
-      "username": "reggie",
-      "email": "newEmail1",
-      "hashPass": "Easy Password",
-      "state": {
-        "score": "8",
-        "level": "",
-        "livesRemaining": 10
-      },
-      "id": 8
-    },
-    {
-      "username": "Samantha",
-      "email": "newEmail1",
-      "hashPass": "Easy",
-      "state": {
-        "score": "9",
-        "level": "",
-        "livesRemaining": 10
-      },
-      "id": 9
-    },
-    {
-      "username": "newUser1",
-      "email": "newEmail1",
-      "hashPass": "Easy",
-      "state": {
-        "score": "10",
-        "level": "",
-        "livesRemaining": 10
-      },
-      "id": 10
-    },
-    {
-      "username": "eshwar",
-      "email": "test@gmail.com",
-      "hashPass": "$2a$05$M4q7fpHRdDAZhWQEKiVo8OZJBTzCHVjaGtZ4vY/0Lg5yH4EG3Bzv6",
-      "state": {
-        "score": "",
-        "level": "",
-        "livesRemaining": ""
-      },
-      "id": 13
-    },
-    {
-      "username": "Sally",
-      "email": "sally@gmail.com",
-      "hashPass": "$2a$05$h.ndFtuhInQow5zzzPf.EOHKL4Az0h4joZi.7FEFtSyqQwf7gZx9q",
-      "state": {
-        "score": "",
-        "level": "",
-        "livesRemaining": ""
-      },
-      "id": 15
-    },
-    {
-      "username": "Finn",
-      "email": "finn@mail.com",
-      "hashPass": "$2a$05$nQbHl.K5lrQIB7LoQkvev.88CtPY8IAezTxjvUA9mx7htGlP/XF3K",
-      "state": {
-        "score": 240,
-        "level": 6
-      },
-      "id": 17
-    },
-    {
-      "username": "finn2",
-      "email": "finn2@mail.com",
-      "hashPass": "$2a$05$f.doQUkDm4Jc8Jg5JZs9a.w7uXxT/RUtW7pPQY6hzaqWw1qxWYPKO",
-      "state": {
-        "score": "",
-        "level": "",
-        "livesRemaining": ""
-      },
-      "id": 18
-    },
-    {
-      "username": "Jack",
-      "email": "sally@mail.com",
-      "hashPass": "$2a$05$Cideu4UNDw4D5lXbxfTG8O1sM/PFGLQILp6rfmgby9.ny/kLR0e7i",
-      "state": {
-        "score": 0,
-        "livesRemaining": 10,
-        "level": 0
-      },
-      "id": 20
-    },
-    {
-      "username": "michael",
-      "email": "mike@gmail.com",
-      "hashPass": "$2a$05$cd9pcFXkBlkifwfJSIbbge6ZgxBTIkPVcnL.x/lJsGrlW1CI8HyOK",
-      "state": {
-        "score": 200,
-        "level": 7
-      },
-      "id": 21
-    },
-    {
-      "username": "Bobby3",
-      "email": "legos@gmail.com",
-      "hashPass": "$2a$05$XLQzraL0V56YaMND6syQXumdBqFol38L6sG9eEU1yQHtnsyqBaQaS",
-      "state": {
-        "score": "",
-        "level": "",
-        "livesRemaining": ""
-      },
-      "id": 22
-    },
-    {
-      "username": "Bobby4",
-      "email": "legos@gmail.com",
-      "hashPass": "$2a$05$lz0JScAzUv/6ApGcXg0otu/bVmp5hDQKCKSnSEz4N.f2viFygVNjC",
-      "state": {
-        "score": "",
-        "level": "",
-        "livesRemaining": ""
-      },
-      "id": 23
-    }
   ]
 }

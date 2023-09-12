@@ -12,7 +12,7 @@ function Intro({
 
   return (
     <>
-      <header className="App-header">Good Lu</header>
+      <header className="App-header">Good Luck</header>
       <div>
         <Login
           setCurrentUser={setCurrentUser}
